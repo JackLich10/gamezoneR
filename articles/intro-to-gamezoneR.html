@@ -128,14 +128,14 @@
 ## $ home_logo_id    &lt;chr&gt; "OklahomaSooners"
 ## $ home_name       &lt;chr&gt; "Sooners"
 ## $ home_total      &lt;dbl&gt; 79
-## $ home_record     &lt;chr&gt; "14-9"
+## $ home_record     &lt;chr&gt; "15-9"
 ## $ away_abbr       &lt;chr&gt; "IaSt"
 ## $ away_id         &lt;int&gt; 1450
 ## $ away_location   &lt;chr&gt; "Iowa State"
 ## $ away_logo_id    &lt;chr&gt; "IowaStateCyclones"
 ## $ away_name       &lt;chr&gt; "Cyclones"
 ## $ away_total      &lt;dbl&gt; 73
-## $ away_record     &lt;chr&gt; "2-21"</code></pre>
+## $ away_record     &lt;chr&gt; "2-22"</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># then, all the games for a given date</span>
 <span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_master_schedule.html">get_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
@@ -143,7 +143,7 @@
 ##   Returning only completed games...</code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 30
+<pre><code>## Rows: 31
 ## Columns: 9
 ## $ season          &lt;chr&gt; "2020-21", "2020-21", "2020-21", "2020-21", "2020-21",…
 ## $ game_date       &lt;chr&gt; "2021-03-10", "2021-03-10", "2021-03-10", "2021-03-10"…
