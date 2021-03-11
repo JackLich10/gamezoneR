@@ -3,8 +3,7 @@
 <!-- badges: end -->
 
 `gamezoneR` is an R package for working with NCAA Men's Basketball play-by-play data 
-from STATS LLC's [GameZone](http://gamezone.stats.com/). The package allows users to scrape team and master 
-schedules as well as play-by-play data with shot locations into a tidy format.
+from STATS LLC's [GameZone](http://gamezone.stats.com/). The package allows users to scrape team and master schedules as well as play-by-play data with shot locations into a tidy format. The main benefit of `gamezoneR` is the volume of shot location data available. While ESPN also charts shots, as of March 10th 2021, ESPN has charted approximately 70,000 shots while STATS LLC has charted over 170,000 from the 2020-21 college basketball season alone!
 
 ## Installation
 
