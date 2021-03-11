@@ -116,24 +116,25 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1
-## Columns: 18
+## Columns: 19
 ## $ date_time       &lt;chr&gt; "9:30 PM ET | Mar 10, 2021"
 ## $ game_id         &lt;chr&gt; "2317212"
 ## $ tv              &lt;chr&gt; "ESPN"
 ## $ home_abbr       &lt;chr&gt; "Okla"
 ## $ home_ap_ranking &lt;int&gt; 25
 ## $ home_id         &lt;int&gt; 1558
+## $ home_is_winner  &lt;lgl&gt; TRUE
 ## $ home_location   &lt;chr&gt; "Oklahoma"
 ## $ home_logo_id    &lt;chr&gt; "OklahomaSooners"
 ## $ home_name       &lt;chr&gt; "Sooners"
-## $ home_total      &lt;dbl&gt; 46
+## $ home_total      &lt;dbl&gt; 79
 ## $ home_record     &lt;chr&gt; "14-9"
 ## $ away_abbr       &lt;chr&gt; "IaSt"
 ## $ away_id         &lt;int&gt; 1450
 ## $ away_location   &lt;chr&gt; "Iowa State"
 ## $ away_logo_id    &lt;chr&gt; "IowaStateCyclones"
 ## $ away_name       &lt;chr&gt; "Cyclones"
-## $ away_total      &lt;dbl&gt; 32
+## $ away_total      &lt;dbl&gt; 73
 ## $ away_record     &lt;chr&gt; "2-21"</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># then, all the games for a given date</span>
@@ -142,7 +143,7 @@
 ##   Returning only completed games...</code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 24
+<pre><code>## Rows: 30
 ## Columns: 9
 ## $ season          &lt;chr&gt; "2020-21", "2020-21", "2020-21", "2020-21", "2020-21",…
 ## $ game_date       &lt;chr&gt; "2021-03-10", "2021-03-10", "2021-03-10", "2021-03-10"…
