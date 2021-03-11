@@ -15,12 +15,6 @@ We will be acquiring data from [gamezone.stats.com](http://gamezone.stats.com/),
 
 This tutorial will require the use of R and RStudio. You can [follow the instructions at R Studio on how to get started](https://rstudio.com/products/rstudio/download/).
 
-### Import libraries
-
-```{r libraries, message=FALSE}
-library(dplyr)
-```
-
 ### Scraping schedules
 
 There are two functions to scrape schedules:
