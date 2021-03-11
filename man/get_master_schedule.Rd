@@ -7,7 +7,7 @@
 get_master_schedule(date, ranked_games = F)
 }
 \arguments{
-\item{date}{date (of the form %Y-%m-%d)}
+\item{date}{date (of the form "2021-03-01")}
 
 \item{ranked_games}{whether or not to only grab the games where at least
 one team is ranked (much faster, since it uses the API)}

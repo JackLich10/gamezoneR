@@ -1,6 +1,6 @@
 #' Get GameZone master schedule data by date
 #' @author Jack Lichtenstein
-#' @param date date (of the form %Y-%m-%d)
+#' @param date date (of the form "2021-03-01")
 #' @param ranked_games whether or not to only grab the games where at least
 #' one team is ranked (much faster, since it uses the API)
 #' @export
