@@ -15,9 +15,13 @@ You can install `gamezoneR` from
 devtools::install_github(repo = "JackLich10/gamezoneR")
 ```
 
+## Getting started
+
+For a quick introduction to the package, visit the Intro to `gamezoneR` [article](https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html).
+
 ## Documentation
 
-For more information on the package and function reference, please see the `gamezoneR` [documentation](https://jacklich10.github.io/gamezoneR/).
+For more information on the package and function reference, please see the `gamezoneR` [documentation](https://jacklich10.github.io/gamezoneR/index.html).
 
 ## Code of Conduct
 
