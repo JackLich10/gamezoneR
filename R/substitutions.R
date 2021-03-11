@@ -6,7 +6,7 @@
 #' @examples
 #' \dontrun{
 #'  parse_substitutions(pbp = game_zone_cbb_pbp(game_id = 2316023))
-#'}
+#' }
 #'
 parse_substitutions <- function(pbp) {
   # find all substitutions

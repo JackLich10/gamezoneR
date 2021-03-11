@@ -8,7 +8,7 @@
 #' @examples
 #' \dontrun{
 #'  get_master_schedule(date = "2021-03-01", ranked_games = T)
-#'}
+#' }
 #'
 get_master_schedule <- function(date, ranked_games = F) {
   # error checking
@@ -143,7 +143,7 @@ get_master_schedule <- function(date, ranked_games = F) {
 #' @examples
 #' \dontrun{
 #'  get_team_schedule(team = "Duke", season = "2018-19")
-#'}
+#' }
 #'
 get_team_schedule <- function(team, season = "2020-21") {
   # find year

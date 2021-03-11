@@ -7,7 +7,7 @@
 #' @examples
 #' \dontrun{
 #'  game_zone_cbb_pbp(game_id = 2316023)
-#'}
+#' }
 #'
 game_zone_cbb_pbp <- function(game_id, sub_parse = F) {
   # some error checks
