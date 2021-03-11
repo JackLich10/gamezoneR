@@ -16,6 +16,7 @@ Depends:
 Imports: 
     usethis,
     dplyr,
+    ggplot2,
     xml2,
     rlang,
     rvest,
