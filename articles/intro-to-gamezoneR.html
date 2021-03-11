@@ -94,104 +94,75 @@
 <a href="#import-libraries" class="anchor"></a>Import libraries</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 </div>
 <div id="scraping-schedules" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scraping-schedules" class="anchor"></a>Scraping schedules</h3>
-<p>There are two functions to scrape schedules: - <code><a href="../reference/get_master_schedule.html">gamezoneR::get_master_schedule()</a></code> - <code><a href="../reference/get_team_schedule.html">gamezoneR::get_team_schedule()</a></code></p>
+<p>There are two functions to scrape schedules:</p>
+<ul>
+<li><code><a href="../reference/get_master_schedule.html">gamezoneR::get_master_schedule()</a></code></li>
+<li><code><a href="../reference/get_team_schedule.html">gamezoneR::get_team_schedule()</a></code></li>
+</ul>
 <p>The <code><a href="../reference/get_master_schedule.html">gamezoneR::get_master_schedule()</a></code> function has a parameter for <code>ranked_games</code>, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all <em>completed</em> games from the inputted date, regardless of whether a team is ranked or not.</p>
 <p>Please note that specifying <code>ranked_games = T</code> increases the speed of the function because it utilizes the underlying API, while <code>ranked_games = F</code> does not.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># first, the ranked games for a given date</span>
 <span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_master_schedule.html">get_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <pre><code>## ℹ Scraping ranked games master schedule for: 2021-03-10</code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 1
-## Columns: 19
-## $ date_time       &lt;chr&gt; "9:30 PM ET | Mar 10, 2021"
-## $ game_id         &lt;chr&gt; "2317212"
-## $ tv              &lt;chr&gt; "ESPN"
-## $ home_abbr       &lt;chr&gt; "Okla"
-## $ home_ap_ranking &lt;int&gt; 25
-## $ home_id         &lt;int&gt; 1558
-## $ home_is_winner  &lt;lgl&gt; TRUE
-## $ home_location   &lt;chr&gt; "Oklahoma"
-## $ home_logo_id    &lt;chr&gt; "OklahomaSooners"
-## $ home_name       &lt;chr&gt; "Sooners"
-## $ home_total      &lt;dbl&gt; 79
-## $ home_record     &lt;chr&gt; "15-9"
-## $ away_abbr       &lt;chr&gt; "IaSt"
-## $ away_id         &lt;int&gt; 1450
-## $ away_location   &lt;chr&gt; "Iowa State"
-## $ away_logo_id    &lt;chr&gt; "IowaStateCyclones"
-## $ away_name       &lt;chr&gt; "Cyclones"
-## $ away_total      &lt;dbl&gt; 73
-## $ away_record     &lt;chr&gt; "2-22"</code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 19
+##   date_time       game_id tv    home_abbr home_ap_ranking home_id home_is_winner
+##   &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;   &lt;int&gt; &lt;lgl&gt;         
+## 1 9:30 PM ET | M… 2317212 ESPN  Okla                   25    1558 TRUE          
+## # … with 12 more variables: home_location &lt;chr&gt;, home_logo_id &lt;chr&gt;,
+## #   home_name &lt;chr&gt;, home_total &lt;dbl&gt;, home_record &lt;chr&gt;, away_abbr &lt;chr&gt;,
+## #   away_id &lt;int&gt;, away_location &lt;chr&gt;, away_logo_id &lt;chr&gt;, away_name &lt;chr&gt;,
+## #   away_total &lt;dbl&gt;, away_record &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># then, all the games for a given date</span>
 <span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_master_schedule.html">get_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <pre><code>## ℹ Scraping master GameZone schedule for: 2021-03-10
 ##   Returning only completed games...</code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 33
-## Columns: 9
-## $ season          &lt;chr&gt; "2020-21", "2020-21", "2020-21", "2020-21", "2020-21",…
-## $ game_date       &lt;chr&gt; "2021-03-10", "2021-03-10", "2021-03-10", "2021-03-10"…
-## $ game_id         &lt;dbl&gt; 2316847, 2316777, 2317141, 2316848, 2316778, 2316884, …
-## $ home            &lt;chr&gt; "Sac", "NCSU", "San Jose St.", "NoAri", "Miami (FL)", …
-## $ away            &lt;chr&gt; "NoCol", "Syracuse", "Wyoming", "Portland St.", "Clems…
-## $ home_total      &lt;dbl&gt; 83, 68, 80, 77, 67, 49, 62, 59, 52, 64, 55, 67, 63, 11…
-## $ away_total      &lt;dbl&gt; 90, 89, 111, 66, 64, 68, 74, 64, 80, 69, 52, 63, 80, 1…
-## $ home_ap_ranking &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ away_ap_ranking &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 9
+##   season  game_date  game_id home   away   home_total away_total home_ap_ranking
+##   &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1 2020-21 2021-03-10 2316847 Sac    NoCol          83         90              NA
+## 2 2020-21 2021-03-10 2316777 NCSU   Syrac…         68         89              NA
+## 3 2020-21 2021-03-10 2317141 San J… Wyomi…         80        111              NA
+## 4 2020-21 2021-03-10 2316848 NoAri  Portl…         77         66              NA
+## 5 2020-21 2021-03-10 2316778 Miami… Clems…         67         64              NA
+## 6 2020-21 2021-03-10 2316884 Marqu… Georg…         49         68              NA
+## # … with 1 more variable: away_ap_ranking &lt;dbl&gt;</code></pre>
 <p>We are able to scrape games by date, but also by team using the <code><a href="../reference/get_team_schedule.html">gamezoneR::get_team_schedule()</a></code> function.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_team_schedule.html">get_team_schedule</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Duke"</span>, season <span class="op">=</span> <span class="st">"2018-19"</span><span class="op">)</span></code></pre></div>
 <pre><code>## ℹ Scraping 2018-19 season for: Duke</code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">duke_schedule</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 34
-## Columns: 23
-## $ season          &lt;chr&gt; "2018-19", "2018-19", "2018-19", "2018-19", "2018-19",…
-## $ start_time      &lt;chr&gt; "9:49 PM ET", "1:00 PM ET", "7:00 PM ET", "6:09 PM ET"…
-## $ game_date       &lt;date&gt; 2018-11-06, 2018-11-11, 2018-11-14, 2018-11-19, 2018-…
-## $ game_id         &lt;dbl&gt; 2083190, 2087019, 2087022, 2082919, 2082916, 2082915, …
-## $ tv              &lt;chr&gt; "ESPN", "ESPN", "ACCN", "ESP2", "ESPN", "ESPN", "ESPN"…
-## $ home            &lt;chr&gt; "Kentucky", "Duke", "Duke", "San Diego State", "Duke",…
-## $ away            &lt;chr&gt; "Duke", "Army West Point", "Eastern Michigan", "Duke",…
-## $ home_abbr       &lt;chr&gt; "Kty", "Duke", "Duke", "SDSU", "Duke", "Gonz", "Duke",…
-## $ home_ap_ranking &lt;int&gt; 2, 4, 1, NA, 1, 3, 3, 3, 3, 3, 2, 2, 1, NA, 13, 1, 1, …
-## $ home_id         &lt;int&gt; 1459, 1388, 1388, 1592, 1388, 1423, 1388, 1388, 1388, …
-## $ home_logo_id    &lt;chr&gt; "KentuckyWildcats", "DukeBlueDevils", "DukeBlueDevils"…
-## $ home_name       &lt;chr&gt; "Wildcats", "Blue Devils", "Blue Devils", "Aztecs", "B…
-## $ home_total      &lt;dbl&gt; 84, 94, 84, 64, 78, 89, 90, 113, 84, 91, 101, 69, 87, …
-## $ home_is_winner  &lt;lgl&gt; NA, TRUE, TRUE, NA, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE…
-## $ home_record     &lt;chr&gt; "0-1", "2-0", "3-0", "2-1", "5-0", "6-0", "6-1", "7-1"…
-## $ away_abbr       &lt;chr&gt; "Duke", "Army", "EastMi", "Duke", "Auburn", "Duke", "I…
-## $ away_ap_ranking &lt;int&gt; 4, NA, NA, 1, 8, 1, NA, NA, NA, NA, NA, 12, NA, 1, 1, …
-## $ away_id         &lt;int&gt; 1388, 1298, 1394, 1388, 1299, 1388, 1446, 1629, 1430, …
-## $ away_is_winner  &lt;lgl&gt; TRUE, NA, NA, TRUE, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ away_logo_id    &lt;chr&gt; "DukeBlueDevils", "ArmyWestPointBlackKnights", "Easter…
-## $ away_name       &lt;chr&gt; "Blue Devils", "Black Knights", "Eagles", "Blue Devils…
-## $ away_total      &lt;dbl&gt; 118, 72, 46, 90, 72, 87, 69, 49, 54, 58, 50, 58, 68, 8…
-## $ away_record     &lt;chr&gt; "1-0", "1-1", "3-1", "4-0", "4-1", "5-1", "5-2", "1-8"…</code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">duke_schedule</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 23
+##   season  start_time game_date  game_id tv    home        away         home_abbr
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;date&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;    
+## 1 2018-19 9:49 PM ET 2018-11-06 2083190 ESPN  Kentucky    Duke         Kty      
+## 2 2018-19 1:00 PM ET 2018-11-11 2087019 ESPN  Duke        Army West P… Duke     
+## 3 2018-19 7:00 PM ET 2018-11-14 2087022 ACCN  Duke        Eastern Mic… Duke     
+## 4 2018-19 6:09 PM ET 2018-11-19 2082919 ESP2  San Diego … Duke         SDSU     
+## 5 2018-19 8:00 PM ET 2018-11-20 2082916 ESPN  Duke        Auburn       Duke     
+## 6 2018-19 5:00 PM ET 2018-11-21 2082915 ESPN  Gonzaga     Duke         Gonz     
+## # … with 15 more variables: home_ap_ranking &lt;int&gt;, home_id &lt;int&gt;,
+## #   home_logo_id &lt;chr&gt;, home_name &lt;chr&gt;, home_total &lt;dbl&gt;,
+## #   home_is_winner &lt;lgl&gt;, home_record &lt;chr&gt;, away_abbr &lt;chr&gt;,
+## #   away_ap_ranking &lt;int&gt;, away_id &lt;int&gt;, away_is_winner &lt;lgl&gt;,
+## #   away_logo_id &lt;chr&gt;, away_name &lt;chr&gt;, away_total &lt;dbl&gt;, away_record &lt;chr&gt;</code></pre>
 </div>
 <div id="scraping-the-play-by-play" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scraping-the-play-by-play" class="anchor"></a>Scraping the play-by-play</h3>
 <p>Now that we have a schedule to work with, we can use the <code><a href="../reference/game_zone_cbb_pbp.html">gamezoneR::game_zone_cbb_pbp()</a></code> function to scrape play-by-play data for individual gameIds. The argument <code>sub_parse</code> is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns <code>home_1</code> through <code>away_5</code>, specifying the names of the 10 players on the floor.</p>
 <p>Please note that GameZone does not track all substitutions. As a result, a new column, <code>sub_error</code> will reside in the appended play-by-play data. I have not come across many games with no such errors</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/game_zone_cbb_pbp.html">game_zone_cbb_pbp</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">$</span><span class="va">game_id</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,
                                     sub_parse <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <pre><code>## ● Scraping GameID: 2316777</code></pre>
@@ -199,7 +170,7 @@
 ##   Note that GameZone does not track all substitutions</code></pre>
 <pre><code>## ✔ Completed GameID: 2316777
 ##   North Carolina State @ Syracuse</code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pbp</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">sub_error</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
@@ -208,53 +179,30 @@
 ## 1 Player leaving not previously in game     2
 ## 2 Sub already in game                       9
 ## 3 &lt;NA&gt;                                    307</code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 318
-## Columns: 37
-## $ season              &lt;chr&gt; "2020-21", "2020-21", "2020-21", "2020-21", "2020-…
-## $ date                &lt;date&gt; 2021-03-10, 2021-03-10, 2021-03-10, 2021-03-10, 2…
-## $ game_id             &lt;dbl&gt; 2316777, 2316777, 2316777, 2316777, 2316777, 23167…
-## $ play_id             &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8,…
-## $ half                &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
-## $ home                &lt;chr&gt; "Syracuse", "Syracuse", "Syracuse", "Syracuse", "S…
-## $ away                &lt;chr&gt; "North Carolina State", "North Carolina State", "N…
-## $ home_score          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2,…
-## $ away_score          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2,…
-## $ score_diff          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0…
-## $ team_id             &lt;dbl&gt; 1633, 1538, 1633, 1538, 1538, 1633, 1538, 1633, 15…
-## $ event_team          &lt;chr&gt; "Syracuse", "North Carolina State", "Syracuse", "N…
-## $ game_secs_remaining &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 2400, 2379…
-## $ half_secs_remaining &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 1200, 1179…
-## $ play_length         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 21, 21…
-## $ desc                &lt;chr&gt; "Starting Lineup - Buddy Boeheim", "Starting Lineu…
-## $ shot_outcome        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "made"…
-## $ free_throw          &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
-## $ three_pt            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
-## $ shot_desc           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "Jump …
-## $ loc_x               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 11.0, …
-## $ loc_y               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 12.25,…
-## $ shooter_id          &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 113228…
-## $ shooter             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "Manny…
-## $ assist              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "Dereo…
-## $ substitution        &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,…
-## $ sub_error           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ home_1              &lt;chr&gt; "Buddy Boeheim", "Buddy Boeheim", "Buddy Boeheim",…
-## $ home_2              &lt;chr&gt; "Quincy Guerrier", "Quincy Guerrier", "Quincy Guer…
-## $ home_3              &lt;chr&gt; "Alan Griffin", "Alan Griffin", "Alan Griffin", "A…
-## $ home_4              &lt;chr&gt; "Joseph Girard III", "Joseph Girard III", "Joseph …
-## $ home_5              &lt;chr&gt; "Marek Dolezaj", "Marek Dolezaj", "Marek Dolezaj",…
-## $ away_1              &lt;chr&gt; "Cam Hayes", "Cam Hayes", "Cam Hayes", "Cam Hayes"…
-## $ away_2              &lt;chr&gt; "Dereon Seabron", "Dereon Seabron", "Dereon Seabro…
-## $ away_3              &lt;chr&gt; "D.J. Funderburk", "D.J. Funderburk", "D.J. Funder…
-## $ away_4              &lt;chr&gt; "Manny Bates", "Manny Bates", "Manny Bates", "Mann…
-## $ away_5              &lt;chr&gt; "Jericole Hellems", "Jericole Hellems", "Jericole …</code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 37
+##   season  date       game_id play_id  half home   away     home_score away_score
+##   &lt;chr&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+## 1 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
+## 2 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
+## 3 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
+## 4 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
+## 5 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
+## 6 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
+## # … with 28 more variables: score_diff &lt;dbl&gt;, team_id &lt;dbl&gt;, event_team &lt;chr&gt;,
+## #   game_secs_remaining &lt;dbl&gt;, half_secs_remaining &lt;dbl&gt;, play_length &lt;dbl&gt;,
+## #   desc &lt;chr&gt;, shot_outcome &lt;chr&gt;, free_throw &lt;lgl&gt;, three_pt &lt;lgl&gt;,
+## #   shot_desc &lt;chr&gt;, loc_x &lt;dbl&gt;, loc_y &lt;dbl&gt;, shooter_id &lt;int&gt;, shooter &lt;chr&gt;,
+## #   assist &lt;chr&gt;, substitution &lt;dbl&gt;, sub_error &lt;chr&gt;, home_1 &lt;chr&gt;,
+## #   home_2 &lt;chr&gt;, home_3 &lt;chr&gt;, home_4 &lt;chr&gt;, home_5 &lt;chr&gt;, away_1 &lt;chr&gt;,
+## #   away_2 &lt;chr&gt;, away_3 &lt;chr&gt;, away_4 &lt;chr&gt;, away_5 &lt;chr&gt;</code></pre>
 <p>Now, let’s scrape all of Duke’s games from the Zion Williamson 2018-19 season using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df()</a></code>.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_pbp</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">duke_schedule</span><span class="op">$</span><span class="va">game_id</span>, 
                           <span class="fu">gamezoneR</span><span class="fu">::</span><span class="va"><a href="../reference/game_zone_cbb_pbp.html">game_zone_cbb_pbp</a></span>, sub_parse <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <p>Let’s plot some shot charts. We will use the built in <code><a href="../reference/base_court.html">gamezoneR::base_court</a></code> ggplot court.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_shots</span> <span class="op">&lt;-</span> <span class="va">duke_pbp</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">loc_x</span><span class="op">)</span>,
                 <span class="va">shooter</span> <span class="op">==</span> <span class="st">"Zion Williamson"</span><span class="op">)</span>
@@ -279,8 +227,8 @@
                  legend.position <span class="op">=</span> <span class="st">'bottom'</span>,
                  legend.box.margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="op">-</span><span class="fl">35</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
                  plot.margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"All of Zion Williamson's shots"</span>,
-                subtitle <span class="op">=</span> <span class="st">"Duke 2018-19 season"</span>,
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"All of Zion Williamson's shots at Duke"</span>,
+                subtitle <span class="op">=</span> <span class="st">"2018-19 college basketball season"</span>,
                 color <span class="op">=</span> <span class="st">"Outcome"</span>,
                 caption <span class="op">=</span> <span class="st">"Chart: @jacklich10 | Data: @gamezoneR"</span><span class="op">)</span></code></pre></div>
 <p><img src="intro-to-gamezoneR_files/figure-html/plot_zion-1.png" width="700"></p>
