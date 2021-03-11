@@ -14,6 +14,7 @@ LazyData: true
 Depends: 
     R (>= 2.10)
 Imports: 
+    usethis,
     dplyr,
     xml2,
     rlang,
