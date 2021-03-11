@@ -18,7 +18,7 @@ devtools::install_github(repo = "JackLich10/gamezoneR")
 
 ## Documentation
 
-For more information on the package and function reference, please see the `gamezoneR` [documentation](https://jacklich.github.io/gamezoneR/).
+For more information on the package and function reference, please see the `gamezoneR` [documentation](https://jacklich10.github.io/gamezoneR/).
 
 ## Code of Conduct
 
