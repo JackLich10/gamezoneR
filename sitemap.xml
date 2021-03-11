@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/index.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/base_court.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/cbb_team_info.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/game_zone_cbb_pbp.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/get_master_schedule.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/get_team_schedule.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/parse_substitutions.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html</loc>
+  </url>
+</urlset>
