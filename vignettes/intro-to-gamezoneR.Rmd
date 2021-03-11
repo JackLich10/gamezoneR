@@ -78,34 +78,33 @@ Let's plot some shot charts. We will use the built in `gamezoneR::base_court` gg
 
 ```{r plot_zion}
 duke_shots <- duke_pbp %>% 
-  filter(!is.na(loc_x),
-         shooter == "Zion Williamson")
+  dplyr::filter(!is.na(loc_x),
+                shooter == "Zion Williamson")
 
-library(ggplot2)
 gamezoneR::base_court +
-  geom_point(data = duke_shots,
-             aes(loc_x, loc_y, color = shot_outcome),
-             alpha = 0.8) +
-  theme(axis.line = ggplot2::element_blank(),
-                   axis.text= ggplot2::element_blank(),
-                   axis.ticks = ggplot2::element_blank(),
-                   axis.title = ggplot2::element_blank(),
-                   panel.background = ggplot2::element_blank(),
-                   panel.grid = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(face = "bold", hjust = 0.5, size = 30/ggplot2::.pt, margin = ggplot2::margin(0, 0, 5, 0)),
-                   plot.subtitle = ggplot2::element_text(face = "italic", hjust = 0.5, size = 24/ggplot2::.pt),
-                   plot.caption = ggplot2::element_text(face = "italic", hjust = 1, size = 20/ggplot2::.pt, margin = ggplot2::margin(0, 0, 0, 0)),
-                   legend.spacing.x = grid::unit(0, 'cm'),
-                   legend.title = ggplot2::element_text(size = 20/ggplot2::.pt, face = "bold"),
-                   legend.text = ggplot2::element_text(size = 16/ggplot2::.pt),
-                   legend.margin = ggplot2::margin(0, 0, 0, 0),
-                   legend.position = 'bottom',
-                   legend.box.margin = ggplot2::margin(-35, 0, 0, 0),
-                   plot.margin = ggplot2::margin(5, 0, 5, 0)) +
-  labs(title = "All of Zion Williamson's shots",
-       subtitle = "Duke 2018-19 season",
-       color = "Outcome",
-       caption = "Chart: @jacklich10 | Data: @gamezoneR")
+  ggplot2::geom_point(data = duke_shots,
+                      ggplot2::aes(loc_x, loc_y, color = shot_outcome),
+                      alpha = 0.8) +
+  ggplot2::theme(axis.line = ggplot2::element_blank(),
+                 axis.text= ggplot2::element_blank(),
+                 axis.ticks = ggplot2::element_blank(),
+                 axis.title = ggplot2::element_blank(),
+                 panel.background = ggplot2::element_blank(),
+                 panel.grid = ggplot2::element_blank(),
+                 plot.title = ggplot2::element_text(face = "bold", hjust = 0.5, size = 30/ggplot2::.pt, margin = ggplot2::margin(0, 0, 5, 0)),
+                 plot.subtitle = ggplot2::element_text(face = "italic", hjust = 0.5, size = 24/ggplot2::.pt),
+                 plot.caption = ggplot2::element_text(face = "italic", hjust = 1, size = 20/ggplot2::.pt, margin = ggplot2::margin(0, 0, 0, 0)),
+                 legend.spacing.x = grid::unit(0, 'cm'),
+                 legend.title = ggplot2::element_text(size = 20/ggplot2::.pt, face = "bold"),
+                 legend.text = ggplot2::element_text(size = 16/ggplot2::.pt),
+                 legend.margin = ggplot2::margin(0, 0, 0, 0),
+                 legend.position = 'bottom',
+                 legend.box.margin = ggplot2::margin(-35, 0, 0, 0),
+                 plot.margin = ggplot2::margin(5, 0, 5, 0)) +
+  ggplot2::labs(title = "All of Zion Williamson's shots",
+                subtitle = "Duke 2018-19 season",
+                color = "Outcome",
+                caption = "Chart: @jacklich10 | Data: @gamezoneR")
 ```
 
 
