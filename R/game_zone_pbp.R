@@ -192,7 +192,6 @@ game_zone_cbb_pbp <- function(game_id, sub_parse = F) {
     pbp_appended <- parse_substitutions(pbp_appended)
   }
 
-  closeAllConnections()
   message <- paste0("Completed GameID: ", game_id, "\n",
                     home_away_cols$away, " @ ", home_away_cols$home)
   usethis::ui_done(message)

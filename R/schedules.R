@@ -30,7 +30,9 @@ get_master_schedule <- function(date, ranked_games = F) {
                 silent = T)
 
     if ("try-error" %in% class(json)) {
-      usethis::ui_oops(paste0("No ranked games for: ", date, "\nReturning Null"))
+      usethis::ui_oops(paste0("No ranked games for: ", date))
+      # usethis::ui_info("It is possible that the API is down. Check back later")
+      usethis::ui_info("Returning Null")
       return(NULL)
     }
 
@@ -38,7 +40,8 @@ get_master_schedule <- function(date, ranked_games = F) {
       janitor::clean_names() %>%
       dplyr::mutate(tv = dplyr::na_if(.data$tv, y = ""),
                     home_record = paste0(.data$home_record_wins, "-", .data$home_record_losses),
-                    away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses)) %>%
+                    away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses),
+                    dplyr::across(dplyr::ends_with("_total"), as.numeric)) %>%
       dplyr::select(.data$date_time, game_id = .data$event_id, .data$tv,
                     dplyr::starts_with("home_"), dplyr::starts_with("away_"),
                     -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
@@ -128,7 +131,6 @@ get_master_schedule <- function(date, ranked_games = F) {
       dplyr::select(.data$season, dplyr::everything(),
                     -c(.data$year, .data$month))
   }
-  closeAllConnections()
   return(schedule)
 }
 
@@ -202,8 +204,6 @@ get_team_schedule <- function(team, season = "2020-21") {
                   -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
                      dplyr::ends_with("_losses"))) %>%
     dplyr::as_tibble()
-
-  closeAllConnections()
 
   return(schedule)
 }

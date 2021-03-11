@@ -3,7 +3,7 @@
 <!-- badges: end -->
 
 `gamezoneR` is an R package for working with NCAA Men's Basketball play-by-play data 
-from http://gamezone.stats.com/. The package allows users to scrape team and master 
+from STATS LLC's [GameZone](http://gamezone.stats.com/). The package allows users to scrape team and master 
 schedules as well as play-by-play data with shot locations into a tidy format.
 
 ## Installation
@@ -15,6 +15,10 @@ You can install `gamezoneR` from
 # Install via devtools package using the following:
 devtools::install_github(repo = "JackLich10/gamezoneR")
 ```
+
+## Documentation
+
+For more information on the package and function reference, please see the `gamezoneR` [documentation](https://jacklich.github.io/gamezoneR/).
 
 ## Code of Conduct
 

@@ -1,0 +1,111 @@
+---
+title: "Intro to gamezoneR"
+author: "Jack Lichtenstein"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+We will be acquiring data from [gamezone.stats.com](http://gamezone.stats.com/), using the `gamezoneR` package, created by [Jack Lichtenstein](https://twitter.com/jacklich10).
+
+### R & RStudio
+
+This tutorial will require the use of R and RStudio. You can [follow the instructions at R Studio on how to get started](https://rstudio.com/products/rstudio/download/).
+
+### Import libraries
+
+```{r libraries, message=FALSE}
+library(dplyr)
+```
+
+### Scraping schedules
+
+There are two functions to scrape schedules:
+- `gamezoneR::get_master_schedule()` 
+- `gamezoneR::get_team_schedule()`
+
+The `gamezoneR::get_master_schedule()` function has a parameter for `ranked_games`, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all *completed* games from the inputted date, regardless of whether a team is ranked or not. 
+
+Please note that specifying `ranked_games = T` increases the speed of the function because it utilizes the underlying API, while `ranked_games = F` does not.
+
+```{r schedules, warning=FALSE}
+# first, the ranked games for a given date
+schedule <- gamezoneR::get_master_schedule(date = "2021-03-10", ranked_games = T)
+
+dplyr::glimpse(schedule)
+
+# then, all the games for a given date
+schedule <- gamezoneR::get_master_schedule(date = "2021-03-10", ranked_games = F)
+
+dplyr::glimpse(schedule)
+```
+
+We are able to scrape games by date, but also by team using the `gamezoneR::get_team_schedule()` function.
+
+```{r duke_schedule}
+duke_schedule <- gamezoneR::get_team_schedule(team = "Duke", season = "2018-19")
+
+dplyr::glimpse(duke_schedule)
+```
+
+### Scraping the play-by-play
+
+Now that we have a schedule to work with, we can use the `gamezoneR::game_zone_cbb_pbp()` function to scrape play-by-play data for individual gameIds. The argument `sub_parse` is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns `home_1` through `away_5`, specifying the names of the 10 players on the floor. 
+
+Please note that GameZone does not track all substitutions. As a result, a new column, `sub_error` will reside in the appended play-by-play data. I have not come across many games with no such errors
+
+```{r pbp}
+pbp <- gamezoneR::game_zone_cbb_pbp(schedule$game_id[1],
+                                    sub_parse = T)
+
+pbp %>% 
+  dplyr::count(sub_error)
+
+dplyr::glimpse(pbp)
+```
+
+Now, let's scrape all of Duke's games from the Zion Williamson 2018-19 season using `purrr::map_df()`.
+
+```{r duke_pbp, message=FALSE}
+duke_pbp <- purrr::map_df(duke_schedule$game_id, 
+                          gamezoneR::game_zone_cbb_pbp, sub_parse = F)
+```
+
+Let's plot some shot charts. We will use the built in `gamezoneR::base_court` ggplot court.
+
+```{r plot_zion}
+duke_shots <- duke_pbp %>% 
+  filter(!is.na(loc_x),
+         shooter == "Zion Williamson")
+
+library(ggplot2)
+gamezoneR::base_court +
+  geom_point(data = duke_shots,
+             aes(loc_x, loc_y, color = shot_outcome),
+             alpha = 0.8) +
+  theme(axis.line = ggplot2::element_blank(),
+                   axis.text= ggplot2::element_blank(),
+                   axis.ticks = ggplot2::element_blank(),
+                   axis.title = ggplot2::element_blank(),
+                   panel.background = ggplot2::element_blank(),
+                   panel.grid = ggplot2::element_blank(),
+                   plot.title = ggplot2::element_text(face = "bold", hjust = 0.5, size = 30/ggplot2::.pt, margin = ggplot2::margin(0, 0, 5, 0)),
+                   plot.subtitle = ggplot2::element_text(face = "italic", hjust = 0.5, size = 24/ggplot2::.pt),
+                   plot.caption = ggplot2::element_text(face = "italic", hjust = 1, size = 20/ggplot2::.pt, margin = ggplot2::margin(0, 0, 0, 0)),
+                   legend.spacing.x = grid::unit(0, 'cm'),
+                   legend.title = ggplot2::element_text(size = 20/ggplot2::.pt, face = "bold"),
+                   legend.text = ggplot2::element_text(size = 16/ggplot2::.pt),
+                   legend.margin = ggplot2::margin(0, 0, 0, 0),
+                   legend.position = 'bottom',
+                   legend.box.margin = ggplot2::margin(-35, 0, 0, 0),
+                   plot.margin = ggplot2::margin(5, 0, 5, 0)) +
+  labs(title = "All of Zion Williamson's shots",
+       subtitle = "Duke 2018-19 season",
+       color = "Outcome",
+       caption = "Chart: @jacklich10 | Data: @gamezoneR")
+```
+
+
