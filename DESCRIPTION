@@ -5,10 +5,10 @@ Version: 0.1.0
 Authors@R: person('Jack', 'Lichtenstein', email = 'jacklich10@gmail.com', role = c('aut','cre'))
 Maintainer: Jack Lichtenstein <jacklich10@gmail.com>
 Description: An R package for working with NCAA Men's Basketball play-by-play data 
-from http://gamezone.stats.com/.
+from http: //gamezone.stats.com/.
     The package allows users to scrape team and master schedules as well as
     play-by-play data with shot locations into a tidy format.
-License: MIT + file LICENSE
+License: Apache License (>= 2)
 Encoding: UTF-8
 LazyData: true
 URL: https://jacklich10.github.io/gamezoneR (website) https://www.github.com/JackLich10/gamezoneR (devel)
