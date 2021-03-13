@@ -50,12 +50,12 @@ get_master_schedule <- function(date, ranked_games = F) {
 
   } else {
     if (as.Date(date) < as.Date("2020-11-25")) {
-      usethis::ui_oops("GameZone has a master schedule from 2020-21 season to present...\nReturning NULL")
+      usethis::ui_oops("GameZone has a master schedule from 2020-21 season to present...")
+      usethis::ui_info("Returning NULL")
       return(NULL)
     }
 
-    message <- paste0("Scraping master GameZone schedule for: ", date,
-                      "\n Returning only completed games...")
+    message <- paste0("Scraping master GameZone schedule for: ", date)
     usethis::ui_info(message)
 
     # formulate url
@@ -80,6 +80,9 @@ get_master_schedule <- function(date, ranked_games = F) {
     tables <- html %>%
       rvest::html_nodes(".shsLinescore") %>%
       rvest::html_table(fill = T)
+
+    # suprress warnings from janitor::row_to_names()
+    options(warn = -1)
 
     # convert tables into box scores
     box <- purrr::map_df(seq_along(tables), function(index) {
@@ -119,7 +122,7 @@ get_master_schedule <- function(date, ranked_games = F) {
                     dplyr::across(dplyr::ends_with("_rank"), as.numeric),
                     link = links,
                     game_id = stringr::str_extract(.data$link, "\\d{7}")) %>%
-      dplyr::filter(.data$final == "Complete") %>%
+      # dplyr::filter(.data$final == "Complete") %>%
       dplyr::transmute(game_date = date, game_id = as.numeric(.data$game_id),
                        .data$home, .data$away, .data$home_total, .data$away_total,
                        home_ap_ranking = .data$home_rank, away_ap_ranking = .data$away_rank) %>%
@@ -131,6 +134,8 @@ get_master_schedule <- function(date, ranked_games = F) {
       dplyr::select(.data$season, dplyr::everything(),
                     -c(.data$year, .data$month))
   }
+  usethis::ui_info(paste0("There were ", nrow(schedule), " game(s) on ", date))
+
   return(schedule)
 }
 
