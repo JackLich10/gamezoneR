@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse GameZone substitutions given a play-by-play dataframe — parse_substitutions • gamezoneR</title>
+<title>Get GameZone play-by-play and shot location data — gamezone_cbb_pbp • gamezoneR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Parse GameZone substitutions given a play-by-play dataframe — parse_substitutions" />
-<meta property="og:description" content="Parse GameZone substitutions given a play-by-play dataframe" />
+<meta property="og:title" content="Get GameZone play-by-play and shot location data — gamezone_cbb_pbp" />
+<meta property="og:description" content="Get GameZone play-by-play and shot location data" />
 
 
 
@@ -115,23 +115,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse GameZone substitutions given a play-by-play dataframe</h1>
+    <h1>Get GameZone play-by-play and shot location data</h1>
     
-    <div class="hidden name"><code>parse_substitutions.Rd</code></div>
+    <div class="hidden name"><code>gamezone_cbb_pbp.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Parse GameZone substitutions given a play-by-play dataframe</p>
+    <p>Get GameZone play-by-play and shot location data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parse_substitutions</span><span class='op'>(</span><span class='va'>pbp</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>gamezone_cbb_pbp</span><span class='op'>(</span><span class='va'>game_id</span>, sub_parse <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pbp</th>
-      <td><p>play-by-play dataframe from <code>gamezone_cbb_pbp</code></p></td>
+      <th>game_id</th>
+      <td><p>unique GameZone GameID</p></td>
+    </tr>
+    <tr>
+      <th>sub_parse</th>
+      <td><p>whether or not to attempt to parse substitution and lineup data</p></td>
     </tr>
     </table>
 
@@ -141,7 +145,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='fu'>parse_substitutions</span><span class='op'>(</span>pbp <span class='op'>=</span> <span class='fu'><a href='gamezone_cbb_pbp.html'>gamezone_cbb_pbp</a></span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>2316023</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='fu'>gamezone_cbb_pbp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>2316023</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 </div></pre>
