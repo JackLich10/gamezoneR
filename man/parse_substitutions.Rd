@@ -7,14 +7,14 @@
 parse_substitutions(pbp)
 }
 \arguments{
-\item{pbp}{play-by-play dataframe from \code{game_zone_cbb_pbp}}
+\item{pbp}{play-by-play dataframe from \code{gamezone_cbb_pbp}}
 }
 \description{
 Parse GameZone substitutions given a play-by-play dataframe
 }
 \examples{
 \dontrun{
- parse_substitutions(pbp = game_zone_cbb_pbp(game_id = 2316023))
+ parse_substitutions(pbp = gamezone_cbb_pbp(game_id = 2316023))
 }
 
 }

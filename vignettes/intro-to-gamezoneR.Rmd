@@ -28,7 +28,7 @@ There are two functions to scrape schedules:
 - `gamezoneR::get_master_schedule()` 
 - `gamezoneR::get_team_schedule()`
 
-The `gamezoneR::get_master_schedule()` function has a parameter for `ranked_games`, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all *completed* games from the inputted date, regardless of whether a team is ranked or not. 
+The `gamezoneR::get_master_schedule()` function has a parameter for `ranked_games`, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all games from the inputted date, regardless of whether a team is ranked or not. 
 
 Please note that specifying `ranked_games = T` increases the speed of the function because it utilizes the underlying API, while `ranked_games = F` does not.
 
@@ -56,10 +56,10 @@ head(duke_schedule)
 
 Now that we have a schedule to work with, we can use the `gamezoneR::game_zone_cbb_pbp()` function to scrape play-by-play data for individual gameIds. The argument `sub_parse` is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns `home_1` through `away_5`, specifying the names of the 10 players on the floor. 
 
-Please note that GameZone does not track all substitutions. As a result, a new column, `sub_error` will reside in the appended play-by-play data. I have not come across many games with no such errors
+Please note that GameZone does not track all substitutions. As a result, a new column, `sub_error` will reside in the appended play-by-play data. I have not come across many games with no such errors.
 
 ```{r pbp}
-pbp <- gamezoneR::game_zone_cbb_pbp(schedule$game_id[2],
+pbp <- gamezoneR::gamezone_cbb_pbp(schedule$game_id[2],
                                     sub_parse = T)
 
 pbp %>% 
@@ -72,7 +72,7 @@ Now, let's scrape all of Duke's games from the Zion Williamson 2018-19 season us
 
 ```{r duke_pbp, message=FALSE}
 duke_pbp <- purrr::map_df(duke_schedule$game_id, 
-                          gamezoneR::game_zone_cbb_pbp, sub_parse = F)
+                          gamezoneR::gamezone_cbb_pbp, sub_parse = F)
 ```
 
 Let's plot some shot charts. We will use the built in `gamezoneR::base_court` ggplot court.
