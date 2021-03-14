@@ -1,4 +1,4 @@
-# gamezoneR
+# gamezoneR <a href='http://jacklich10.github.io/gamezoneR'><img src="man/figures/logo.png" align="right" height="139"/></a>
 <!-- badges: start -->
 <!-- badges: end -->
 

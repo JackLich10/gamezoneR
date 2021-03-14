@@ -173,7 +173,7 @@ get_team_schedule <- function(team, season = "2020-21") {
     return(NULL)
   }
 
-  message <- paste0("Scraping ", season, " season for: ", team)
+  message <- paste0("Scraping ", season, " season schedule for: ", team)
   usethis::ui_info(message)
 
   base_url <- "http://api.gamezone.stats.com/Basketball/Service.svc/league/cbk/eventsForTeam/"
