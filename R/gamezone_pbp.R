@@ -23,7 +23,7 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
     return(NULL)
   }
 
-  message <- paste0("Scraping GameID: ", game_id)
+  message <- paste0("Scraping Play-by-Play for GameID: ", game_id)
   usethis::ui_todo(message)
 
   # formulate url

@@ -7,8 +7,8 @@
 get_player_season_stats(player_id)
 }
 \arguments{
-\item{player_id}{playerID found in a play-by-play dataframe returned by
-\code{gamezone_cbb_pbp}}
+\item{player_id}{playerID found in a play-by-play or box score dataframe returned by
+\code{gamezone_cbb_pbp} or \code{gamezone_cbb_boxscore}, respectively}
 }
 \description{
 Get GameZone player statistical summary for a given player
