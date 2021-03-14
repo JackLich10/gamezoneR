@@ -16,7 +16,13 @@
     <loc>http://jacklich10.github.io/gamezoneR/reference/get_master_schedule.html</loc>
   </url>
   <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/get_player_season_stats.html</loc>
+  </url>
+  <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/get_team_schedule.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/get_team_season_stats.html</loc>
   </url>
   <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/parse_substitutions.html</loc>
