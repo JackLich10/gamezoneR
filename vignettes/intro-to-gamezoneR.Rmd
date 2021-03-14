@@ -108,4 +108,4 @@ gamezoneR::base_court +
                 caption = "Chart: @jacklich10 | Data: @gamezoneR")
 ```
 
-
+You might notice that Zion seems to have very few shots at the rim compared to what you might expect. This is true! STATS LLC's API codes all layups and dunks at either (25, 5.25) or (26, 6.25), so many shots are plotted on top of one another. I have no idea why this is the case, but you might want to experiment with randomizing the locations of these shots when plotting shot charts.
