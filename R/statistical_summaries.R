@@ -62,7 +62,7 @@ get_team_season_stats <- function(team, season = "2020-21") {
   return(team_stats)
 }
 
-#' Get GameZone team statistical summary for a given player
+#' Get GameZone player statistical summary for a given player
 #' @author Jack Lichtenstein
 #' @param player_id playerID found in a play-by-play dataframe returned by
 #' \code{gamezone_cbb_pbp}

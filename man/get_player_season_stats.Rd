@@ -2,7 +2,7 @@
 % Please edit documentation in R/statistical_summaries.R
 \name{get_player_season_stats}
 \alias{get_player_season_stats}
-\title{Get GameZone team statistical summary for a given player}
+\title{Get GameZone player statistical summary for a given player}
 \usage{
 get_player_season_stats(player_id)
 }
@@ -11,7 +11,7 @@ get_player_season_stats(player_id)
 \code{gamezone_cbb_pbp}}
 }
 \description{
-Get GameZone team statistical summary for a given player
+Get GameZone player statistical summary for a given player
 }
 \examples{
 \dontrun{
