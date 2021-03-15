@@ -70,6 +70,13 @@ get_master_schedule <- function(date, ranked_games = F) {
       rvest::html_nodes(".teamName") %>%
       rvest::html_text()
 
+    if (rlang::is_empty(teams)) {
+      usethis::ui_oops(paste0("There are no games for: ", date))
+      # usethis::ui_info("It is possible that the API is down. Check back later")
+      usethis::ui_info("Returning Null")
+      return(NULL)
+    }
+
     # extract game links
     links <- html %>%
       rvest::html_nodes("#shsCBKScoreboard .shsGZLink a") %>%
