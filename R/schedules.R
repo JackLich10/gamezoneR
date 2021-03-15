@@ -23,13 +23,13 @@ get_master_schedule <- function(date, ranked_games = F) {
 
     # formulate url
     base_url <- "http://api.gamezone.stats.com/Basketball/Service.svc/league/cbk/events/"
-    append <- "?eventTypeId=1&language=en-US&timezone=Eastern+Standard+Time"
+    append <- "?language=en-US&timezone=Eastern+Standard+Time"
     url <- paste0(base_url, date, append)
 
     json <- try(jsonlite::fromJSON(url, flatten = T),
                 silent = T)
 
-    if ("try-error" %in% class(json)) {
+    if ("try-error" %in% class(json) || length(json) == 0) {
       usethis::ui_oops(paste0("No ranked games for: ", date))
       # usethis::ui_info("It is possible that the API is down. Check back later")
       usethis::ui_info("Returning Null")
