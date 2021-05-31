@@ -19,6 +19,21 @@ devtools::install_github(repo = "JackLich10/gamezoneR")
 
 For a quick introduction to the package, visit the Intro to `gamezoneR` [article](https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html).
 
+If you want to load in all available play-by-play data dating back to the 2017-18 season, use the following code:
+```r
+future::plan("multisession")
+tictoc::tic()
+progressr::with_progress({
+  pbp <- gamezoneR::load_gamezone_pbp(gamezoneR:::available_seasons())
+})
+tictoc::toc()
+## 32.339 sec elapsed
+length(unique(pbp$game_id))
+## 7618 games
+pbp %>% dplyr::filter(!is.na(loc_x))
+## 882,704 shot locations
+```
+
 ## Documentation
 
 For more information on the package and function reference, please see the `gamezoneR` [documentation](https://jacklich10.github.io/gamezoneR/index.html).
