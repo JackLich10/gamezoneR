@@ -1,9 +1,9 @@
-pandoc: 2.7.3
+pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   intro-to-gamezoneR: intro-to-gamezoneR.html
-last_built: 2021-03-14T23:54Z
+last_built: 2021-05-31T18:59Z
 urls:
   reference: http://jacklich10.github.io/gamezoneR/reference
   article: http://jacklich10.github.io/gamezoneR/articles
