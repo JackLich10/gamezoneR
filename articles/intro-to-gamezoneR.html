@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">gamezoneR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -119,14 +119,14 @@
 <pre><code>## ℹ There were 1 game(s) on 2021-03-10</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 19
-##   date_time       game_id tv    home_abbr home_ap_ranking home_id home_is_winner
-##   &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;   &lt;int&gt; &lt;lgl&gt;         
-## 1 9:30 PM ET | M… 2317212 ESPN  Okla                   25    1558 TRUE          
-## # … with 12 more variables: home_location &lt;chr&gt;, home_logo_id &lt;chr&gt;,
-## #   home_name &lt;chr&gt;, home_total &lt;dbl&gt;, home_record &lt;chr&gt;, away_abbr &lt;chr&gt;,
-## #   away_id &lt;int&gt;, away_location &lt;chr&gt;, away_logo_id &lt;chr&gt;, away_name &lt;chr&gt;,
-## #   away_total &lt;dbl&gt;, away_record &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 1 x 21
+##   season  start_time game_date  game_id tv    home     away       home_abbr
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;date&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    
+## 1 2020-21 9:30 PM ET 2021-03-10 2317212 ESPN  Oklahoma Iowa State Okla     
+## # … with 13 more variables: home_ap_ranking &lt;int&gt;, home_id &lt;int&gt;,
+## #   home_is_winner &lt;lgl&gt;, home_logo_id &lt;chr&gt;, home_name &lt;chr&gt;,
+## #   home_total &lt;dbl&gt;, home_record &lt;chr&gt;, away_abbr &lt;chr&gt;, away_id &lt;int&gt;,
+## #   away_logo_id &lt;chr&gt;, away_name &lt;chr&gt;, away_total &lt;dbl&gt;, away_record &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># then, all the games for a given date</span>
 <span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_master_schedule.html">get_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
@@ -173,8 +173,8 @@
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_cbb_pbp.html">gamezone_cbb_pbp</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">$</span><span class="va">game_id</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,
                                     sub_parse <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
-<pre><code>## ● Scraping Play-by-Play for GameID: 2316777</code></pre>
-<pre><code>## ● Attempting to parse lineup and substitution data...
+<pre><code>## • Scraping Play-by-Play for GameID: 2316777</code></pre>
+<pre><code>## • Attempting to parse lineup and substitution data...
 ##   Note that GameZone does not track all substitutions</code></pre>
 <pre><code>## ✔ Completed GameID: 2316777
 ##   North Carolina State @ Syracuse</code></pre>
@@ -189,22 +189,25 @@
 ## 3 &lt;NA&gt;                                    307</code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 37
-##   season  date       game_id play_id  half home   away     home_score away_score
-##   &lt;chr&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;
-## 1 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
-## 2 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
-## 3 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
-## 4 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
-## 5 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
-## 6 2020-21 2021-03-10 2316777       1     1 Syrac… North C…          0          0
-## # … with 28 more variables: score_diff &lt;dbl&gt;, team_id &lt;dbl&gt;, event_team &lt;chr&gt;,
-## #   game_secs_remaining &lt;dbl&gt;, half_secs_remaining &lt;dbl&gt;, play_length &lt;dbl&gt;,
-## #   desc &lt;chr&gt;, shot_outcome &lt;chr&gt;, free_throw &lt;lgl&gt;, three_pt &lt;lgl&gt;,
-## #   shot_desc &lt;chr&gt;, loc_x &lt;dbl&gt;, loc_y &lt;dbl&gt;, shooter_id &lt;int&gt;, shooter &lt;chr&gt;,
-## #   assist &lt;chr&gt;, substitution &lt;dbl&gt;, sub_error &lt;chr&gt;, home_1 &lt;chr&gt;,
-## #   home_2 &lt;chr&gt;, home_3 &lt;chr&gt;, home_4 &lt;chr&gt;, home_5 &lt;chr&gt;, away_1 &lt;chr&gt;,
-## #   away_2 &lt;chr&gt;, away_3 &lt;chr&gt;, away_4 &lt;chr&gt;, away_5 &lt;chr&gt;</code></pre>
+<pre><code>## # A tibble: 6 x 45
+##   season  date       game_id play_id neutral  half home   away         home_name
+##   &lt;chr&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;    
+## 1 2020-21 2021-03-10 2316777       1       1     1 Syrac… North Carol… Orange   
+## 2 2020-21 2021-03-10 2316777       1       1     1 Syrac… North Carol… Orange   
+## 3 2020-21 2021-03-10 2316777       1       1     1 Syrac… North Carol… Orange   
+## 4 2020-21 2021-03-10 2316777       1       1     1 Syrac… North Carol… Orange   
+## 5 2020-21 2021-03-10 2316777       1       1     1 Syrac… North Carol… Orange   
+## 6 2020-21 2021-03-10 2316777       1       1     1 Syrac… North Carol… Orange   
+## # … with 36 more variables: away_name &lt;chr&gt;, home_timeouts &lt;dbl&gt;,
+## #   away_timeouts &lt;dbl&gt;, home_score &lt;dbl&gt;, away_score &lt;dbl&gt;, score_diff &lt;dbl&gt;,
+## #   team_id &lt;dbl&gt;, event_team &lt;chr&gt;, game_secs_remaining &lt;dbl&gt;,
+## #   half_secs_remaining &lt;dbl&gt;, play_length &lt;dbl&gt;, desc &lt;chr&gt;,
+## #   shot_outcome &lt;chr&gt;, free_throw &lt;lgl&gt;, three_pt &lt;lgl&gt;, shot_desc &lt;chr&gt;,
+## #   loc_x &lt;dbl&gt;, loc_y &lt;dbl&gt;, shooter_id &lt;int&gt;, shooter &lt;chr&gt;, assist &lt;chr&gt;,
+## #   substitution &lt;dbl&gt;, poss_before &lt;chr&gt;, poss_after &lt;chr&gt;, poss_number &lt;chr&gt;,
+## #   sub_error &lt;chr&gt;, home_1 &lt;chr&gt;, home_2 &lt;chr&gt;, home_3 &lt;chr&gt;, home_4 &lt;chr&gt;,
+## #   home_5 &lt;chr&gt;, away_1 &lt;chr&gt;, away_2 &lt;chr&gt;, away_3 &lt;chr&gt;, away_4 &lt;chr&gt;,
+## #   away_5 &lt;chr&gt;</code></pre>
 <p>Now, let’s scrape all of Duke’s games from the Zion Williamson 2018-19 season using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df()</a></code>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_pbp</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">duke_schedule</span><span class="op">$</span><span class="va">game_id</span>, 
