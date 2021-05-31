@@ -1,7 +1,7 @@
 Package: gamezoneR
 Type: Package
 Title: A Scraping Interface for STATS LLC GameZone College Basketball Data
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person('Jack', 'Lichtenstein', email = 'jacklich10@gmail.com', role = c('aut','cre'))
 Maintainer: Jack Lichtenstein <jacklich10@gmail.com>
 Description: An R package for working with NCAA Men's Basketball play-by-play data 
@@ -14,19 +14,22 @@ LazyData: true
 URL: https://jacklich10.github.io/gamezoneR (website) https://www.github.com/JackLich10/gamezoneR (devel)
 BugReports: https://www.github.com/JackLich10/gamezoneR/issues
 Depends: 
-    R (>= 2.10)
+    R (>= 4.0)
 Imports: 
-    usethis,
     dplyr,
+    furrr,
+    future,
     ggplot2,
-    xml2,
+    janitor,
+    jsonlite,
+    magrittr,
+    progressr (>= 0.6.0),
     rlang,
     rvest,
     stringr,
+    tibble,
     tidyr,
-    janitor,
-    magrittr,
-    jsonlite,
+    usethis,
     purrr,
-    tibble
+    xml2
 RoxygenNote: 7.1.1

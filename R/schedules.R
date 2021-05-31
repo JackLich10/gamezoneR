@@ -17,6 +17,16 @@ get_master_schedule <- function(date, ranked_games = F) {
     return(NULL)
   }
 
+  # parse date into season
+  season <- as.numeric(stringr::str_sub(date, end = 4))
+  month <- as.numeric(stringr::str_sub(date, start = 6, end = 7))
+
+  if (month >= 10) {
+    season <- paste0(season, "-", stringr::str_sub(season + 1, start = 3))
+  } else {
+    season <- paste0(season - 1, "-", stringr::str_sub(season, start = 3))
+  }
+
   if (isTRUE(ranked_games)) {
     message <- paste0("Scraping ranked games master schedule for: ", date)
     usethis::ui_info(message)
@@ -38,11 +48,20 @@ get_master_schedule <- function(date, ranked_games = F) {
 
     schedule <- json %>%
       janitor::clean_names() %>%
-      dplyr::mutate(tv = dplyr::na_if(.data$tv, y = ""),
+      tidyr::separate(.data$date_time, into = c("start_time", "date"),
+                      sep = " \\| ", remove = T) %>%
+      dplyr::mutate(season = season,
+                    date = as.Date(.data$date, format = "%B %d, %Y"),
+                    tv = dplyr::na_if(.data$tv, y = ""),
+                    home_total = dplyr::na_if(.data$home_total, y = ""),
+                    away_total = dplyr::na_if(.data$away_total, y = ""),
+                    dplyr::across(c(.data$event_id, .data$home_total, .data$away_total),
+                                  as.numeric),
                     home_record = paste0(.data$home_record_wins, "-", .data$home_record_losses),
-                    away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses),
-                    dplyr::across(dplyr::ends_with("_total"), as.numeric)) %>%
-      dplyr::select(.data$date_time, game_id = .data$event_id, .data$tv,
+                    away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses)) %>%
+      dplyr::select(.data$season, .data$start_time, game_date = .data$date,
+                    game_id = .data$event_id, .data$tv,
+                    home = .data$home_location, away = .data$away_location,
                     dplyr::starts_with("home_"), dplyr::starts_with("away_"),
                     -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
                        dplyr::ends_with("_losses"))) %>%

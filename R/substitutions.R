@@ -34,10 +34,11 @@ parse_substitutions <- function(pbp) {
            home = ifelse(.data$home == .data$event_team, "home", "away")) %>%
     tidyr::separate(.data$player, into = c("sub", "out"),
                     sep = " in for ") %>%
-    dplyr::select(.data$play_id, .data$home, .data$sub, .data$out)
+    dplyr::select(.data$play_id, .data$home, .data$sub, .data$out) %>%
+    dplyr::distinct()
 
   # error checking for no substitution data
-  if(nrow(subs) == 0) {
+  if (nrow(subs) == 0) {
     usethis::ui_oops("There are no marked substitutions in the Play-by-Play...")
     usethis::ui_info("Returning original Play-by-Play")
     return(pbp)
@@ -78,7 +79,7 @@ parse_substitutions <- function(pbp) {
     }
     # remove completed row
     subs <- subs %>%
-      dplyr::slice(2:n())
+      dplyr::slice(2:dplyr::n())
 
     # recurse
     sub_players(subs, players)
