@@ -2,7 +2,6 @@
 #' Load cleaned gamezoneR play-by-play from the data repository
 #' @author Jack Lichtenstein
 #' @param seasons A vector of years (formatted like 2020-21) associated with men's college basketball seasons
-#' @import furrr
 #' @export
 #'
 #' @examples
