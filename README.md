@@ -27,11 +27,11 @@ progressr::with_progress({
   pbp <- gamezoneR::load_gamezone_pbp(gamezoneR:::available_seasons())
 })
 tictoc::toc()
-## 32.339 sec elapsed
+## 48.078 sec elapsed
 length(unique(pbp$game_id))
-## 7618 games
-pbp %>% dplyr::filter(!is.na(loc_x))
-## 882,704 shot locations
+## 8134 games
+pbp %>% dplyr::filter(!is.na(loc_x)) %>% nrow()
+## 942,185 shot locations
 ```
 
 ## Documentation
