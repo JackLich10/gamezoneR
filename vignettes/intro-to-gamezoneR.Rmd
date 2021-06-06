@@ -224,7 +224,20 @@ pbp_summarized <- pbp %>%
 
 Let's take a look at the most proficient offenses in college basketball since 2017-18
 
+```{r install_libraries, echo=FALSE, include=FALSE}
+if (!requireNamespace('gt', quietly = TRUE)){
+  install.packages('gt')
+}
+if (!requireNamespace('remotes', quietly = TRUE)){
+  install.packages('remotes')
+}
+remotes::install_github("jthomasmock/espnscrapeR")
+```
+
 ```{r gt_table}
+library(gt)
+library(espnscrapeR)
+
 pbp_summarized %>%
   group_by(season, poss_before) %>%
   summarise(games = n(),
