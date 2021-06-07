@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse GameZone substitutions given a play-by-play dataframe — parse_substitutions • gamezoneR</title>
+<title>Changelog • gamezoneR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,7 @@
 
 
 
-<meta property="og:title" content="Parse GameZone substitutions given a play-by-play dataframe — parse_substitutions" />
-<meta property="og:description" content="Parse GameZone substitutions given a play-by-play dataframe" />
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="http://jacklich10.github.io/gamezoneR/logo.png" />
 
 
@@ -67,7 +66,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -126,42 +125,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse GameZone substitutions given a play-by-play dataframe</h1>
-    
-    <div class="hidden name"><code>parse_substitutions.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    <p>Parse GameZone substitutions given a play-by-play dataframe</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>parse_substitutions</span><span class='op'>(</span><span class='va'>pbp</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>pbp</th>
-      <td><p>play-by-play dataframe from <code>gamezone_cbb_pbp</code></p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Jack Lichtenstein</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='fu'>parse_substitutions</span><span class='op'>(</span>pbp <span class='op'>=</span> <span class='fu'><a href='gamezone_cbb_pbp.html'>gamezone_cbb_pbp</a></span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>2316023</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <div id="gamezoner-011" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#gamezoner-011" class="anchor"></a><strong>gamezoneR 0.1.1</strong>
+</h1>
+<div id="add-play-by-play-loader" class="section level3">
+<h3 class="hasAnchor">
+<a href="#add-play-by-play-loader" class="anchor"></a><strong>Add play-by-play loader</strong>
+</h3>
+<ul>
+<li>
+<a href="https://jacklich10.github.io/gamezoneR/reference/load_gamezone_pbp.html"><code>gamezoneR::load_gamezone_pbp()</code></a> function added, which retrieves pre-scraped data from remote data repository</li>
+<li>
+<a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_cbb_pbp.html"><code>gamezoneR::gamezone_cbb_pbp</code></a> now attempts to parse possessions, allowing for analysis on a per possession basis. See the intro <a href="https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html">article</a> for more.</li>
+</ul>
+</div>
+</div>
+    <div id="gamezoner-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#gamezoner-010" class="anchor"></a><strong>gamezoneR 0.1.0</strong>
+</h1>
+<div id="initial-release" class="section level3">
+<h3 class="hasAnchor">
+<a href="#initial-release" class="anchor"></a><strong>Initial release</strong>
+</h3>
+<ul>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/base_court.html"><code>gamezoneR::base_court</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/cbb_team_info.html"><code>gamezoneR::cbb_team_info</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_cbb_boxscore.html"><code>gamezoneR::gamezone_cbb_boxscore</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_cbb_pbp.html"><code>gamezoneR::gamezone_cbb_pbp</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/get_master_schedule.html"><code>gamezoneR::get_master_schedule</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/get_player_season_stats.html"><code>gamezoneR::get_player_season_stats</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/get_team_schedule.html"><code>gamezoneR::get_team_schedule</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/get_team_season_stats.html"><code>gamezoneR::get_team_season_stats</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/load_gamezone_pbp.html"><code>gamezoneR::load_gamezone_pbp</code></a></li>
+<li><a href="https://jacklich10.github.io/gamezoneR/reference/parse_substitutions.html"><code>gamezoneR::parse_substitutions</code></a></li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
