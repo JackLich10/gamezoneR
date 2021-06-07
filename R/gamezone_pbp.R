@@ -68,6 +68,12 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
     neutral <- 0
   }
 
+  if (length(json[["PBP"]]) == 0) {
+    usethis::ui_oops("GameZone does not have Play-by-Play data for this game...")
+    usethis::ui_info("Returning NULL")
+    return(NULL)
+  }
+
   # function to extract home and away team
   extract_home_away <- function(data, home = T) {
     data %>%
@@ -103,12 +109,6 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
   # extract season
   season <- json[["Season"]]
   season <- paste0(season, "-", as.numeric(stringr::str_sub(season, start = 3)) + 1)
-
-  if (length(json[["PBP"]]) == 0) {
-    usethis::ui_oops("GameZone does not have Play-by-Play data for this game...")
-    usethis::ui_info("Returning NULL")
-    return(NULL)
-  }
 
   # extract play-by-play
   pbp <- json[["PBP"]] %>%
