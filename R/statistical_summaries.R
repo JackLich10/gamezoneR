@@ -112,12 +112,11 @@ get_player_season_stats <- function(player_id) {
                        values_from = .data$Game) %>%
     janitor::clean_names() %>%
     dplyr::bind_cols(player_info) %>%
-    dplyr::select(.data$player_id, .data$name, .data$jersey_num,
-                  dplyr::everything()) %>%
+    dplyr::select(dplyr::any_of(c(
+      "player_id", "name", "jersey_num")),
+      dplyr::everything()) %>%
     dplyr::as_tibble()
 
   return(player_stats)
 }
-
-
 

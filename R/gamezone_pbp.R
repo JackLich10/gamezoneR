@@ -176,7 +176,11 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
                   # extract assist player
                   assist = stringr::str_extract(.data$text, "\\..* with the assist.$"),
                   assist = stringr::str_remove(.data$assist, " with the assist.$"),
-                  assist = stringr::str_remove(.data$assist, "^.*\\. ")) %>%
+                  assist = stringr::str_remove(.data$assist, "^.*\\. "),
+                  dplyr::across(c(.data$shooter, .data$assist),
+                                ~ dplyr::na_if(., " ")),
+                  dplyr::across(c(.data$shooter, .data$assist),
+                                ~ dplyr::na_if(., ""))) %>%
     dplyr::as_tibble() %>%
     # select what is needed
     dplyr::select(dplyr::any_of(c(
