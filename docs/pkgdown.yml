@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   intro-to-gamezoneR: intro-to-gamezoneR.html
-last_built: 2021-06-06T18:29Z
+last_built: 2021-06-07T00:26Z
 urls:
   reference: http://jacklich10.github.io/gamezoneR/reference
   article: http://jacklich10.github.io/gamezoneR/articles
