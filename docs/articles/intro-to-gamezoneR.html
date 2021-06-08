@@ -355,65 +355,13 @@
             .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span><span class="op">)</span></code></pre></div>
 <p>Let’s take a look at the most proficient offenses in college basketball since 2017-18</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jthomasmock/espnscrapeR">espnscrapeR</a></span><span class="op">)</span>
-
-<span class="va">pbp_summarized</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">poss_before</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>games <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
-            ppp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ppp</span><span class="op">*</span><span class="va">poss</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">poss</span><span class="op">)</span>,
-            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">games</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">ppp</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="fu">gamezoneR</span><span class="fu">::</span><span class="va"><a href="../reference/cbb_team_info.html">cbb_team_info</a></span> <span class="op">%&gt;%</span>
-              <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">game_zone</span>, <span class="va">team_logo_espn</span><span class="op">)</span>,
-            by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"poss_before"</span> <span class="op">=</span> <span class="st">"game_zone"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">team_logo_espn</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Best team offensive efficiencies**"</span><span class="op">)</span>,
-                 subtitle <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"*2017-18 through 2020-21 college basketball seasons*"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span>team_logo_espn <span class="op">=</span> <span class="st">""</span>,
-                 poss_before <span class="op">=</span> <span class="st">"Team"</span>,
-                 games <span class="op">=</span> <span class="st">"Games"</span>,
-                 ppp <span class="op">=</span> <span class="st">"PPP"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/fmt_number.html">fmt_number</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"ppp"</span><span class="op">)</span>,
-                 decimals <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cell_borders.html">cell_borders</a></span><span class="op">(</span>
-      sides <span class="op">=</span> <span class="st">"left"</span>,
-      color <span class="op">=</span> <span class="st">"black"</span>,
-      weight <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-    locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>
-        columns <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">ppp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cell_borders.html">cell_borders</a></span><span class="op">(</span>
-      sides <span class="op">=</span> <span class="st">"bottom"</span>,
-      color <span class="op">=</span> <span class="st">"black"</span>,
-      weight <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-    locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cells_column_labels.html">cells_column_labels</a></span><span class="op">(</span>
-        columns <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/data_color.html">data_color</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"ppp"</span><span class="op">)</span>,
-                 colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html">col_numeric</a></span><span class="op">(</span>
-                   palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#ffffff"</span>, <span class="st">"#f2fbd2"</span>, <span class="st">"#c9ecb4"</span>, <span class="st">"#93d3ab"</span>, <span class="st">"#35b0ab"</span><span class="op">)</span>,
-                   domain <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/text_transform.html">text_transform</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">team_logo_espn</span><span class="op">)</span><span class="op">)</span>,
-                     fn <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/web_image.html">web_image</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">x</span>, height <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_source_note.html">tab_source_note</a></span><span class="op">(</span><span class="st">"Table: @jacklich10 | Data: @gamezoneR"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">espnscrapeR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/espnscrapeR/man/gt_theme_538.html">gt_theme_538</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">poss_before</span><span class="op">)</span>,
-                 align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html">tab_options</a></span><span class="op">(</span>data_row.padding <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/px.html">px</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="mfejuhuqbh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="yozgkbqofj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mfejuhuqbh .gt_table {
+#yozgkbqofj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -438,7 +386,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_heading {
+#yozgkbqofj .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -450,7 +398,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_title {
+#yozgkbqofj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -460,7 +408,7 @@ html {
   border-bottom-width: 0;
 }
 
-#mfejuhuqbh .gt_subtitle {
+#yozgkbqofj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -470,13 +418,13 @@ html {
   border-top-width: 0;
 }
 
-#mfejuhuqbh .gt_bottom_border {
+#yozgkbqofj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_col_headings {
+#yozgkbqofj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: transparent;
@@ -491,7 +439,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_col_heading {
+#yozgkbqofj .gt_col_heading {
   color: #333333;
   background-color: white;
   font-size: 80%;
@@ -511,7 +459,7 @@ html {
   overflow-x: hidden;
 }
 
-#mfejuhuqbh .gt_column_spanner_outer {
+#yozgkbqofj .gt_column_spanner_outer {
   color: #333333;
   background-color: white;
   font-size: 80%;
@@ -523,15 +471,15 @@ html {
   padding-right: 4px;
 }
 
-#mfejuhuqbh .gt_column_spanner_outer:first-child {
+#yozgkbqofj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mfejuhuqbh .gt_column_spanner_outer:last-child {
+#yozgkbqofj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mfejuhuqbh .gt_column_spanner {
+#yozgkbqofj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: black;
@@ -543,7 +491,7 @@ html {
   width: 100%;
 }
 
-#mfejuhuqbh .gt_group_heading {
+#yozgkbqofj .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -565,7 +513,7 @@ html {
   vertical-align: middle;
 }
 
-#mfejuhuqbh .gt_empty_group_heading {
+#yozgkbqofj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -580,15 +528,15 @@ html {
   vertical-align: middle;
 }
 
-#mfejuhuqbh .gt_from_md > :first-child {
+#yozgkbqofj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mfejuhuqbh .gt_from_md > :last-child {
+#yozgkbqofj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mfejuhuqbh .gt_row {
+#yozgkbqofj .gt_row {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 5px;
@@ -607,7 +555,7 @@ html {
   overflow-x: hidden;
 }
 
-#mfejuhuqbh .gt_stub {
+#yozgkbqofj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -619,7 +567,7 @@ html {
   padding-left: 12px;
 }
 
-#mfejuhuqbh .gt_summary_row {
+#yozgkbqofj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -629,7 +577,7 @@ html {
   padding-right: 5px;
 }
 
-#mfejuhuqbh .gt_first_summary_row {
+#yozgkbqofj .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +587,7 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_grand_summary_row {
+#yozgkbqofj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -649,7 +597,7 @@ html {
   padding-right: 5px;
 }
 
-#mfejuhuqbh .gt_first_grand_summary_row {
+#yozgkbqofj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -659,11 +607,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_striped {
+#yozgkbqofj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mfejuhuqbh .gt_table_body {
+#yozgkbqofj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -672,7 +620,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_footnotes {
+#yozgkbqofj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -686,13 +634,13 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_footnote {
+#yozgkbqofj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#mfejuhuqbh .gt_sourcenotes {
+#yozgkbqofj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -706,41 +654,41 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#mfejuhuqbh .gt_sourcenote {
+#yozgkbqofj .gt_sourcenote {
   font-size: 12px;
   padding: 4px;
 }
 
-#mfejuhuqbh .gt_left {
+#yozgkbqofj .gt_left {
   text-align: left;
 }
 
-#mfejuhuqbh .gt_center {
+#yozgkbqofj .gt_center {
   text-align: center;
 }
 
-#mfejuhuqbh .gt_right {
+#yozgkbqofj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mfejuhuqbh .gt_font_normal {
+#yozgkbqofj .gt_font_normal {
   font-weight: normal;
 }
 
-#mfejuhuqbh .gt_font_bold {
+#yozgkbqofj .gt_font_bold {
   font-weight: bold;
 }
 
-#mfejuhuqbh .gt_font_italic {
+#yozgkbqofj .gt_font_italic {
   font-style: italic;
 }
 
-#mfejuhuqbh .gt_super {
+#yozgkbqofj .gt_super {
   font-size: 65%;
 }
 
-#mfejuhuqbh .gt_footnote_marks {
+#yozgkbqofj .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -752,7 +700,7 @@ html {
 <th colspan="5" class="gt_heading gt_title gt_font_normal" style><strong>Best team offensive efficiencies</strong></th>
     </tr>
 <tr>
-<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style><em>2017-18 through 2020-21 college basketball seasons</em></th>
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style><em>2014-15 through 2020-21 college basketball seasons</em></th>
     </tr>
 </thead>
 <thead class="gt_col_headings"><tr>
@@ -764,109 +712,109 @@ html {
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
+<td class="gt_row gt_left">2014-15</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/87.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Notre Dame</td>
+<td class="gt_row gt_right">38</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #35B0AB; color: #000000;">1.25</td>
+</tr>
+<tr>
 <td class="gt_row gt_left">2017-18</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/222.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Villanova</td>
 <td class="gt_row gt_right">40</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #35B0AB; color: #000000;">1.22</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #B2E1B0; color: #000000;">1.22</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2020-21</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Gonzaga</td>
 <td class="gt_row gt_right">32</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #3FB2AB; color: #000000;">1.22</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #B6E3B1; color: #000000;">1.22</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2018-19</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Gonzaga</td>
 <td class="gt_row gt_right">37</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #51B8AB; color: #000000;">1.22</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #BDE6B2; color: #000000;">1.22</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2014-15</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/84.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Indiana</td>
+<td class="gt_row gt_right">34</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #CDEDB7; color: #000000;">1.21</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2016-17</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/197.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Oklahoma State</td>
+<td class="gt_row gt_right">33</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #D5F0BD; color: #000000;">1.21</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2016-17</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/26.png" style="height:30px;"></td>
+<td class="gt_row gt_left">UCLA</td>
+<td class="gt_row gt_right">36</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #D7F1BE; color: #000000;">1.21</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2014-15</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/275.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Wisconsin</td>
+<td class="gt_row gt_right">40</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #E7F7CA; color: #000000;">1.20</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2019-20</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Gonzaga</td>
 <td class="gt_row gt_right">33</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #B7E3B1; color: #000000;">1.20</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F2FBD3; color: #000000;">1.20</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2015-16</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/84.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Indiana</td>
+<td class="gt_row gt_right">35</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F4FCD8; color: #000000;">1.19</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2020-21</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/239.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Baylor</td>
 <td class="gt_row gt_right">30</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #C4EAB3; color: #000000;">1.19</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F5FCDD; color: #000000;">1.19</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2014-15</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Gonzaga</td>
+<td class="gt_row gt_right">38</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F6FCDF; color: #000000;">1.19</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2014-15</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/150.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Duke</td>
+<td class="gt_row gt_right">39</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F6FCDF; color: #000000;">1.19</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2017-18</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png" style="height:30px;"></td>
 <td class="gt_row gt_left">TCU</td>
 <td class="gt_row gt_right">32</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #CFEEB8; color: #000000;">1.19</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F8FDE6; color: #000000;">1.19</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">2017-18</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Purdue</td>
-<td class="gt_row gt_right">37</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F3FBD4; color: #000000;">1.17</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2020-21</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Iowa</td>
-<td class="gt_row gt_right">31</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F4FCD9; color: #000000;">1.17</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2017-18</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/98.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Western Kentucky</td>
-<td class="gt_row gt_right">34</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F5FCDC; color: #000000;">1.17</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2017-18</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2608.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Saint Mary's</td>
-<td class="gt_row gt_right">24</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F6FCDE; color: #000000;">1.17</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2017-18</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Gonzaga</td>
-<td class="gt_row gt_right">37</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F6FCDE; color: #000000;">1.17</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2017-18</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/150.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Duke</td>
-<td class="gt_row gt_right">37</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F7FCE1; color: #000000;">1.17</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2017-18</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/127.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Michigan State</td>
-<td class="gt_row gt_right">35</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FBFEEF; color: #000000;">1.16</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2018-19</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/66.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Iowa State</td>
-<td class="gt_row gt_right">35</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FFFFFD; color: #000000;">1.16</td>
-</tr>
-<tr>
-<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">2017-18</td>
-<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2724.png" style="height:30px;"></td>
-<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">Wichita State</td>
-<td class="gt_row gt_right" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">33</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FFFFFF; color: #000000; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">1.16</td>
+<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">2015-16</td>
+<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/127.png" style="height:30px;"></td>
+<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">Michigan State</td>
+<td class="gt_row gt_right" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">35</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FFFFFF; color: #000000; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">1.18</td>
 </tr>
 </tbody>
 <tfoot class="gt_sourcenotes"><tr>

@@ -2,7 +2,7 @@
 is_sequential <- function() inherits(future::plan(), "sequential")
 
 # Initialize first available season in data repository
-first_season <- "2017-18"
+first_season <- "2014-15"
 
 # Find most recent college basketball season
 most_recent_season <- function() {

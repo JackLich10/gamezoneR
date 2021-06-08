@@ -116,6 +116,13 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
     dplyr::mutate(dplyr::across(c(.data$team_id, .data$home_score, .data$away_score),
                                 as.numeric))
 
+  # some games have no charted shots because the play-by-play is just listing the starting lineup
+  if (length(json[["Shotchart"]]) == 0 & nrow(pbp) < 15) {
+    usethis::ui_oops("GameZone does not have Play-by-Play data for this game...")
+    usethis::ui_info("Returning NULL")
+    return(NULL)
+  }
+
   # extract shot locations
   shots <- json[["Shotchart"]] %>%
     dplyr::select(-.data$Player) %>%

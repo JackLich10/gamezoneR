@@ -222,7 +222,7 @@ pbp_summarized <- pbp %>%
   mutate(ppp = points/poss)
 ```
 
-Let's take a look at the most proficient offenses in college basketball since 2017-18
+Let's take a look at the most proficient offenses in college basketball since 2014-15
 
 ```{r install_libraries, echo=FALSE, include=FALSE}
 if (!requireNamespace('gt', quietly = TRUE)){
@@ -234,7 +234,7 @@ if (!requireNamespace('remotes', quietly = TRUE)){
 remotes::install_github("jthomasmock/espnscrapeR")
 ```
 
-```{r gt_table}
+```{r gt_table, echo=FALSE}
 library(gt)
 library(espnscrapeR)
 
@@ -252,7 +252,7 @@ pbp_summarized %>%
   select(season, team_logo_espn, everything()) %>%
   gt::gt() %>%
   gt::tab_header(title = gt::md("**Best team offensive efficiencies**"),
-                 subtitle = gt::md("*2017-18 through 2020-21 college basketball seasons*")) %>%
+                 subtitle = gt::md("*2014-15 through 2020-21 college basketball seasons*")) %>%
   gt::cols_label(team_logo_espn = "",
                  poss_before = "Team",
                  games = "Games",
