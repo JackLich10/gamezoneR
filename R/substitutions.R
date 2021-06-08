@@ -26,6 +26,12 @@ parse_substitutions <- function(pbp) {
     dplyr::arrange(desc(.data$home), .data$player_num) %>%
     dplyr::select(.data$play_id, .data$home, .data$player_num, .data$player)
 
+  if (nrow(starters) == 0) {
+    usethis::ui_oops("There are no marked starters in the Play-by-Play...")
+    usethis::ui_info("Returning original Play-by-Play")
+    return(pbp)
+  }
+
   # get each row of substitutions in game
   subs <- substitutions %>%
     dplyr::filter(!stringr::str_detect(.data$desc, "^Starting")) %>%
