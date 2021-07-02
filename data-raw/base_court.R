@@ -47,9 +47,15 @@ court_themes = list(
 )
 
 # Plot court function
-plot_court = function(court_theme = court_themes$light, use_short_three = FALSE) {
-  if (use_short_three) {
-    three_point_radius = 22
+plot_court = function(court_theme = court_themes$light, use_short_three = F, old_college = F) {
+  if (isTRUE(use_short_three)) {
+    three_point_radius = 22 + 1.75/12
+    three_point_side_height = 8
+  }
+
+  if (isTRUE(old_college)) {
+    three_point_radius = 20.75
+    three_point_side_radius = 20.75
     three_point_side_height = 0
   }
 
@@ -128,12 +134,18 @@ plot_court = function(court_theme = court_themes$light, use_short_three = FALSE)
                    plot.caption = ggplot2::element_text(face = "italic", size = 20/ggplot2::.pt, margin = ggplot2::margin(0, 0, 0, 0)))
 }
 
-# Empty court
+# Empty court (old)
+base_court_old <- plot_court(court_theme = court_themes$light, old_college = T) +
+  ggplot2::theme(panel.background = ggplot2::element_blank(),
+                 plot.background = ggplot2::element_blank())
+# Empty court (current)
 base_court <- plot_court(court_theme = court_themes$light, use_short_three = T) +
   ggplot2::theme(panel.background = ggplot2::element_blank(),
                  plot.background = ggplot2::element_blank())
+
 #plot_court(court_theme = court_themes$dark, use_short_three = T)
 
-rm(list = setdiff(ls(), "base_court"))
+rm(list = setdiff(ls(), "base_court", "base_court_old"))
 
+usethis::use_data(base_court_old, overwrite = T)
 usethis::use_data(base_court, overwrite = T)

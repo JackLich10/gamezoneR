@@ -6,10 +6,10 @@
 #'
 #' @examples
 #' \dontrun{
-#'  get_team_season_stats(team = "Duke", season = "2018-19")
+#'  gamezone_mbb_team_stats(team = "Duke", season = "2018-19")
 #' }
 #'
-get_team_season_stats <- function(team, season = "2020-21") {
+gamezone_mbb_team_stats <- function(team, season = "2020-21") {
   # find year
   year <- stringr::str_sub(season, end = 4)
 
@@ -70,10 +70,10 @@ get_team_season_stats <- function(team, season = "2020-21") {
 #'
 #' @examples
 #' \dontrun{
-#'  get_player_season_stats(player_id = 1061640)
+#'  gamezone_mbb_player_stats(player_id = 1061640)
 #' }
 #'
-get_player_season_stats <- function(player_id) {
+gamezone_mbb_player_stats <- function(player_id) {
   # construct urls
   base_url <- "http://api.gamezone.stats.com/Basketball/Service.svc/league/cbk/player/"
   append <- "/seasonstats"

@@ -7,10 +7,10 @@
 #'
 #' @examples
 #' \dontrun{
-#'  get_master_schedule(date = "2021-03-01", ranked_games = T)
+#'  gamezone_mbb_master_schedule(date = "2021-03-01", ranked_games = T)
 #' }
 #'
-get_master_schedule <- function(date, ranked_games = F) {
+gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
   # error checking
   if (is.na(as.Date(date, format = "%Y-%m-%d"))) {
     usethis::ui_oops("Date is not in the format %Y-%m-%d...\nReturning NULL")
@@ -173,10 +173,10 @@ get_master_schedule <- function(date, ranked_games = F) {
 #'
 #' @examples
 #' \dontrun{
-#'  get_team_schedule(team = "Duke", season = "2018-19")
+#'  gamezone_mbb_team_schedule(team = "Duke", season = "2018-19")
 #' }
 #'
-get_team_schedule <- function(team, season = "2020-21") {
+gamezone_mbb_team_schedule <- function(team, season = "2020-21") {
   # find year
   year <- stringr::str_sub(season, end = 4)
 
@@ -222,20 +222,20 @@ get_team_schedule <- function(team, season = "2020-21") {
     dplyr::mutate(season = season,
                   date = as.Date(.data$date, format = "%B %d, %Y"),
                   tv = dplyr::na_if(.data$tv, y = ""),
-                  home_total = dplyr::na_if(.data$home_total, y = ""),
-                  away_total = dplyr::na_if(.data$away_total, y = ""),
-                  dplyr::across(c(.data$event_id, .data$home_total, .data$away_total),
+                  dplyr::across(dplyr::ends_with("_total"),
+                                ~ dplyr::na_if(., y = "")),
+                  dplyr::across(c(.data$event_id, dplyr::ends_with("_total")),
                                 as.numeric),
                   home_record = paste0(.data$home_record_wins, "-", .data$home_record_losses),
                   away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses)) %>%
-    dplyr::select(.data$season, .data$start_time, game_date = .data$date,
-                  game_id = .data$event_id, .data$tv,
-                  home = .data$home_location, away = .data$away_location,
-                  dplyr::starts_with("home_"), dplyr::starts_with("away_"),
-                  -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
-                     dplyr::ends_with("_losses"))) %>%
+    dplyr::select(dplyr::any_of(c(
+      "season", "start_time", "game_date" = "date",
+      "game_id" = "event_id", "tv",
+      "home" = "home_location", "away" = "away_location")),
+      dplyr::starts_with("home_"),  dplyr::starts_with("away_"),
+      -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
+         dplyr::ends_with("_losses"))) %>%
     dplyr::as_tibble()
 
   return(schedule)
 }
-

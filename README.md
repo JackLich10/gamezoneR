@@ -29,9 +29,9 @@ progressr::with_progress({
 tictoc::toc()
 ## 48.078 sec elapsed
 length(unique(pbp$game_id))
-## 8134 games
+## 24,994 games
 pbp %>% dplyr::filter(!is.na(loc_x)) %>% nrow()
-## 942,185 shot locations
+## 2,843,392 shot locations
 ```
 
 ## Documentation

@@ -2,7 +2,7 @@
 is_sequential <- function() inherits(future::plan(), "sequential")
 
 # Initialize first available season in data repository
-first_season <- "2014-15"
+first_season <- "2008-09"
 
 # Find most recent college basketball season
 most_recent_season <- function() {
@@ -21,7 +21,7 @@ available_seasons <- function() {
 
   seasons <- as.numeric(substr(first_season, 1, 4)):as.numeric(substr(last_season, 1, 4))
 
-  return(paste0(seasons, "-", substr(seasons+1, 3, 4)))
+  return(paste0(seasons, "-", substr(seasons + 1, 3, 4)))
 }
 
 #' @importFrom magrittr %>%

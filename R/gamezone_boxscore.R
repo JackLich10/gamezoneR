@@ -5,10 +5,10 @@
 #'
 #' @examples
 #' \dontrun{
-#'  gamezone_cbb_boxscore(game_id = 2316023)
+#'  gamezone_mbb_boxscore(game_id = 2316023)
 #' }
 #'
-gamezone_cbb_boxscore <- function(game_id) {
+gamezone_mbb_boxscore <- function(game_id) {
   # some error checks
   if (is.na(game_id) || is.null(game_id)) {
     usethis::ui_oops("GameID is missing...")
@@ -22,8 +22,7 @@ gamezone_cbb_boxscore <- function(game_id) {
     return(NULL)
   }
 
-  message <- paste0("Scraping box score for GameID: ", game_id)
-  usethis::ui_todo(message)
+  usethis::ui_todo(paste0("Scraping box score for GameID: ", game_id))
 
   # formulate url
   base_url <- "http://api.gamezone.stats.com/Basketball/Service.svc/league/cbk/events/"
@@ -56,7 +55,7 @@ gamezone_cbb_boxscore <- function(game_id) {
   extract_home_away <- function(data, home = T) {
     data %>%
       purrr::map_df(., `[`) %>%
-      dplyr::select(-c(tidyselect::any_of("Record"))) %>%
+      dplyr::select(-c(dplyr::any_of("Record"))) %>%
       janitor::clean_names() %>%
       dplyr::distinct(.data$id, .keep_all = T) %>%
       dplyr::transmute(team_abbr = .data$abbr,

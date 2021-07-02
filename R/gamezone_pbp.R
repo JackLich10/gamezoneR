@@ -6,10 +6,10 @@
 #'
 #' @examples
 #' \dontrun{
-#'  gamezone_cbb_pbp(game_id = 2316023)
+#'  gamezone_mbb_pbp(game_id = 2316023)
 #' }
 #'
-gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
+gamezone_mbb_pbp <- function(game_id, sub_parse = F) {
   # some error checks
   if (is.na(game_id) || is.null(game_id)) {
     usethis::ui_oops("GameID is missing...")
@@ -108,13 +108,18 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
 
   # extract season
   season <- json[["Season"]]
-  season <- paste0(season, "-", as.numeric(stringr::str_sub(season, start = 3)) + 1)
+  next_season <- as.numeric(stringr::str_sub(season, start = 3)) + 1
+  if (next_season < 10) {
+    next_season <- sprintf("%02d", next_season)
+  }
+  season <- paste0(season, "-", next_season)
 
   # extract play-by-play
   pbp <- json[["PBP"]] %>%
     janitor::clean_names() %>%
     dplyr::mutate(dplyr::across(c(.data$team_id, .data$home_score, .data$away_score),
-                                as.numeric))
+                                as.numeric)) %>%
+    dplyr::distinct()
 
   # some games have no charted shots because the play-by-play is just listing the starting lineup
   if (length(json[["Shotchart"]]) == 0 & nrow(pbp) < 15) {
@@ -129,7 +134,8 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
     janitor::clean_names() %>%
     dplyr::bind_cols(json[["Shotchart"]][["Player"]] %>%
                        janitor::clean_names() %>%
-                       dplyr::rename(shooter_id = .data$id))
+                       dplyr::rename(shooter_id = .data$id)) %>%
+    dplyr::distinct()
 
   # join shots and play-by-play together
   pbp <- pbp %>%
@@ -309,6 +315,9 @@ gamezone_cbb_pbp <- function(game_id, sub_parse = F) {
                                        !is.na(.data$shot_outcome) ~ .data$event_team,
                                        T ~ NA_character_),
                                      poss_after = dplyr::case_when(
+                                       # an offensive rebound with the next `poss_before` being the other team
+                                       # means the offensive rebound led to nothing and should have a change of possession
+                                       .data$o_reb == T & dplyr::lead(.data$poss_before) != .data$event_team ~ dplyr::lead(.data$poss_before),
                                        # offensive and defensive rebounds mean possession is with `event_team`
                                        .data$d_reb == T ~ .data$event_team,
                                        .data$o_reb == T ~ .data$event_team,

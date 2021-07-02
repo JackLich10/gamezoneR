@@ -35,6 +35,14 @@
 #' An object for shot chart plotting
 #'
 #' A list which contains a base court for basketball shot location plotting
+#' for the old college three point line (20.75 feet all around)
+#'
+#' @format A list with 9 items
+"base_court_old"
+
+#' An object for shot chart plotting
+#'
+#' A list which contains a base court for basketball shot location plotting
 #'
 #' @format A list with 9 items
 "base_court"

@@ -42,21 +42,21 @@ theme_set(
 
 There are two functions to scrape schedules:
 
-- `gamezoneR::get_master_schedule()` 
-- `gamezoneR::get_team_schedule()`
+- `gamezoneR::gamezone_mbb_master_schedule()` 
+- `gamezoneR::gamezone_mbb_team_schedule()`
 
-The `gamezoneR::get_master_schedule()` function has a parameter for `ranked_games`, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all games from the inputted date, regardless of whether a team is ranked or not. 
+The `gamezoneR::gamezone_mbb_master_schedule()` function has a parameter for `ranked_games`, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all games from the inputted date, regardless of whether a team is ranked or not. 
 
 Please note that specifying `ranked_games = T` increases the speed of the function because it utilizes the underlying API, while `ranked_games = F` does not.
 
 ```{r schedules, warning=FALSE}
 # first, the ranked games for a given date
-schedule <- gamezoneR::get_master_schedule(date = "2021-03-10", ranked_games = T)
+schedule <- gamezoneR::gamezone_mbb_master_schedule(date = "2021-03-10", ranked_games = T)
 
 head(schedule)
 
 # then, all the games for a given date
-schedule <- gamezoneR::get_master_schedule(date = "2021-03-10", ranked_games = F)
+schedule <- gamezoneR::gamezone_mbb_master_schedule(date = "2021-03-10", ranked_games = F)
 
 head(schedule)
 ```
@@ -64,19 +64,19 @@ head(schedule)
 We are able to scrape games by date, but also by team using the `gamezoneR::get_team_schedule()` function.
 
 ```{r duke_schedule}
-duke_schedule <- gamezoneR::get_team_schedule(team = "Duke", season = "2018-19")
+duke_schedule <- gamezoneR::gamezone_mbb_team_schedule(team = "Duke", season = "2018-19")
 
 head(duke_schedule)
 ```
 
 ### Scraping the play-by-play
 
-Now that we have a schedule to work with, we can use the `gamezoneR::game_zone_cbb_pbp()` function to scrape play-by-play data for individual gameIds. The argument `sub_parse` is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns `home_1` through `away_5`, specifying the names of the 10 players on the floor. 
+Now that we have a schedule to work with, we can use the `gamezoneR::gamezone_mbb_pbp()` function to scrape play-by-play data for individual gameIds. The argument `sub_parse` is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns `home_1` through `away_5`, specifying the names of the 10 players on the floor. 
 
 Please note that GameZone does not track all substitutions. As a result, a new column, `sub_error` will reside in the appended play-by-play data. I have not come across many games with no such errors.
 
 ```{r pbp}
-pbp <- gamezoneR::gamezone_cbb_pbp(schedule$game_id[2],
+pbp <- gamezoneR::gamezone_mbb_pbp(schedule$game_id[2],
                                    sub_parse = T)
 
 pbp %>% 
@@ -89,7 +89,7 @@ Now, let's scrape all of Duke's games from the Zion Williamson 2018-19 season us
 
 ```{r duke_pbp, message=FALSE}
 duke_pbp <- purrr::map_df(duke_schedule$game_id, 
-                          gamezoneR::gamezone_cbb_pbp, sub_parse = F)
+                          gamezoneR::gamezone_mbb_pbp, sub_parse = F)
 ```
 
 Let's plot some shot charts. We will use the built in `gamezoneR::base_court` ggplot court.
@@ -127,11 +127,11 @@ gamezoneR::base_court +
 
 You might notice that Zion seems to have very few shots at the rim compared to what you might expect. This is true! STATS LLC's API codes all layups and dunks at either (25, 5.25) or (26, 6.25), so many shots are plotted on top of one another. I have no idea why this is the case, but you might want to experiment with randomizing the locations of these shots when plotting shot charts.
 
-Since `gamezoneR` version 0.1.1 now attempts to parse possession information from the play-by-play, we can also look at a team's offensive and defensive efficiency (by points per possession). Below is Duke's offensive and defensive efficiency by game from the 2018-19 college basektball season.
+Since `gamezoneR` version 0.1.1 now attempts to parse possession information from the play-by-play, we can also look at a team's offensive and defensive efficiency (by points per possession). Below is Duke's offensive and defensive efficiency by game from the 2018-19 college basketball season.
 
 ```{r duke_ppp}
 duke_pbp %>%
-  filter(!is.na(poss_before)) %>%
+  dplyr::filter(!is.na(poss_before)) %>%
   dplyr::mutate(poss_number = as.numeric(poss_number),
                 shot_made_numeric = dplyr::case_when(
                   is.na(shot_outcome) ~ NA_real_,
@@ -147,21 +147,21 @@ duke_pbp %>%
                   shot_made_numeric == 1 & free_throw == 1 ~ 1,
                   shot_made_numeric == 1 & three_pt == 1 ~ 3,
                   shot_made_numeric == 1 & three_pt == 0 & free_throw == 0 ~ 2)) %>%
-  group_by(date, game_id, poss_before, poss_number) %>%
-  summarise(fgm = sum(shot_outcome == "made" & free_throw == F, na.rm = T),
-            fga = sum(!is.na(shot_outcome) & free_throw == F),
-            ftm = sum(shot_outcome == "made" & free_throw == T),
-            fta = sum(!is.na(shot_outcome) & free_throw == T),
-            points = sum(points, na.rm = T),
-            .groups = "drop") %>%
-  group_by(date, game_id, poss_before) %>%
-  summarise(poss = dplyr::n(),
-            across(fgm:points, sum),
-            .groups = "drop") %>%
-  mutate(ppp = points/poss,
-         type = ifelse(poss_before == "Duke", "Offense", "Defense"),
-         color = ifelse(poss_before == "Duke", "black", "#003366"),
-         fill = ifelse(poss_before == "Duke", "#001A57", "white")) %>%
+  dplyr::group_by(date, game_id, poss_before, poss_number) %>%
+  dplyr::summarise(fgm = sum(shot_outcome == "made" & free_throw == F, na.rm = T),
+                   fga = sum(!is.na(shot_outcome) & free_throw == F),
+                   ftm = sum(shot_outcome == "made" & free_throw == T),
+                   fta = sum(!is.na(shot_outcome) & free_throw == T),
+                   points = sum(points, na.rm = T),
+                   .groups = "drop") %>%
+  dplyr::group_by(date, game_id, poss_before) %>%
+  dplyr::summarise(poss = dplyr::n(),
+                   across(fgm:points, sum),
+                   .groups = "drop") %>%
+  dplyr::mutate(ppp = points/poss,
+                type = ifelse(poss_before == "Duke", "Offense", "Defense"),
+                color = ifelse(poss_before == "Duke", "black", "#003366"),
+                fill = ifelse(poss_before == "Duke", "#001A57", "white")) %>%
   ggplot(aes(date, ppp, fill = fill, color = color)) +
   geom_line() +
   geom_point(aes(size = poss),
@@ -183,16 +183,19 @@ Alternatively, you may want to load in all games at once from the remote reposit
 
 ```{r load_data}
 future::plan("multisession")
+tictoc::tic()
 progressr::with_progress({
-  pbp <- gamezoneR::load_gamezone_pbp(gamezoneR:::available_seasons())
+  pbp <- gamezoneR::load_gamezone_pbp(c("2016-17", "2017-18", "2018-19", "2019-20", "2020-21"))
 })
+tictoc::toc()
 ```
 
 Below, we aggregate each team's offensive and defensive efficiency's (again by points per possession) by game.
 
 ```{r cbb_ppp}
 pbp_summarized <- pbp %>%
-  filter(!is.na(poss_before)) %>%
+  dplyr::distinct() %>% 
+  dplyr::filter(!is.na(poss_before)) %>%
   dplyr::mutate(poss_number = as.numeric(poss_number),
                 shot_made_numeric = dplyr::case_when(
                   is.na(shot_outcome) ~ NA_real_,
@@ -208,21 +211,21 @@ pbp_summarized <- pbp %>%
                   shot_made_numeric == 1 & free_throw == 1 ~ 1,
                   shot_made_numeric == 1 & three_pt == 1 ~ 3,
                   shot_made_numeric == 1 & three_pt == 0 & free_throw == 0 ~ 2)) %>%
-  group_by(season, date, game_id, poss_before, poss_number) %>%
-  summarise(fgm = sum(shot_outcome == "made" & free_throw == F, na.rm = T),
-            fga = sum(!is.na(shot_outcome) & free_throw == F),
-            ftm = sum(shot_outcome == "made" & free_throw == T),
-            fta = sum(!is.na(shot_outcome) & free_throw == T),
-            points = sum(points, na.rm = T),
-            .groups = "drop") %>%
-  group_by(season, date, game_id, poss_before) %>%
-  summarise(poss = dplyr::n(),
-            across(fgm:points, sum),
-            .groups = "drop") %>%
-  mutate(ppp = points/poss)
+  dplyr::group_by(season, date, game_id, poss_before, poss_number) %>%
+  dplyr::summarise(fgm = sum(shot_outcome == "made" & free_throw == F, na.rm = T),
+                   fga = sum(!is.na(shot_outcome) & free_throw == F),
+                   ftm = sum(shot_outcome == "made" & free_throw == T),
+                   fta = sum(!is.na(shot_outcome) & free_throw == T),
+                   points = sum(points, na.rm = T),
+                   .groups = "drop") %>%
+  dplyr::group_by(season, date, game_id, poss_before) %>%
+  dplyr::summarise(poss = dplyr::n(),
+                   across(fgm:points, sum),
+                   .groups = "drop") %>%
+  dplyr::mutate(ppp = points/poss)
 ```
 
-Let's take a look at the most proficient offenses in college basketball since 2014-15
+Let's take a look at the most proficient offenses in college basketball since 2016-17:
 
 ```{r install_libraries, echo=FALSE, include=FALSE}
 if (!requireNamespace('gt', quietly = TRUE)){
@@ -239,20 +242,20 @@ library(gt)
 library(espnscrapeR)
 
 pbp_summarized %>%
-  group_by(season, poss_before) %>%
-  summarise(games = n(),
-            ppp = sum(ppp*poss)/sum(poss),
-            .groups = "drop") %>%
-  filter(games >= 10) %>%
-  arrange(desc(ppp)) %>%
+  dplyr::group_by(season, poss_before) %>%
+  dplyr::summarise(games = dplyr::n(),
+                   ppp = sum(ppp*poss)/sum(poss),
+                   .groups = "drop") %>%
+  dplyr::filter(games >= 10) %>%
+  dplyr::arrange(dplyr::desc(ppp)) %>%
   head(15) %>%
-  left_join(gamezoneR::cbb_team_info %>%
-              select(game_zone, team_logo_espn),
-            by = c("poss_before" = "game_zone")) %>%
-  select(season, team_logo_espn, everything()) %>%
+  dplyr::left_join(gamezoneR::cbb_team_info %>%
+                     dplyr::select(game_zone, team_logo_espn),
+                   by = c("poss_before" = "game_zone")) %>%
+  dplyr::select(season, team_logo_espn, dplyr::everything()) %>%
   gt::gt() %>%
   gt::tab_header(title = gt::md("**Best team offensive efficiencies**"),
-                 subtitle = gt::md("*2014-15 through 2020-21 college basketball seasons*")) %>%
+                 subtitle = gt::md("*2016-17 through 2020-21 college basketball seasons*")) %>%
   gt::cols_label(team_logo_espn = "",
                  poss_before = "Team",
                  games = "Games",
@@ -287,4 +290,3 @@ pbp_summarized %>%
                  align = "left") %>%
   gt::tab_options(data_row.padding = gt::px(2))
 ```
-
