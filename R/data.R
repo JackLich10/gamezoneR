@@ -30,7 +30,7 @@
 #'   \item{color_6}{Color 6}
 #'   \item{logo_url}{Wikimedia logo url}
 #' }
-"cbb_team_info"
+"mbb_team_info"
 
 #' An object for shot chart plotting
 #'

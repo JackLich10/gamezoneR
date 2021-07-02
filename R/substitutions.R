@@ -1,11 +1,11 @@
 #' Parse GameZone substitutions given a play-by-play dataframe
 #' @author Jack Lichtenstein
-#' @param pbp play-by-play dataframe from \code{gamezone_cbb_pbp}
+#' @param pbp play-by-play dataframe from \code{gamezone_mbb_pbp}
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#'  parse_substitutions(pbp = gamezone_cbb_pbp(game_id = 2316023))
+#'  parse_substitutions(pbp = gamezone_mbb_pbp(game_id = 2316023))
 #' }
 #'
 parse_substitutions <- function(pbp) {

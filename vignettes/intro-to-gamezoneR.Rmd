@@ -183,16 +183,14 @@ Alternatively, you may want to load in all games at once from the remote reposit
 
 ```{r load_data}
 future::plan("multisession")
-tictoc::tic()
 progressr::with_progress({
   pbp <- gamezoneR::load_gamezone_pbp(c("2016-17", "2017-18", "2018-19", "2019-20", "2020-21"))
 })
-tictoc::toc()
 ```
 
 Below, we aggregate each team's offensive and defensive efficiency's (again by points per possession) by game.
 
-```{r cbb_ppp}
+```{r mbb_ppp}
 pbp_summarized <- pbp %>%
   dplyr::distinct() %>% 
   dplyr::filter(!is.na(poss_before)) %>%
@@ -249,7 +247,7 @@ pbp_summarized %>%
   dplyr::filter(games >= 10) %>%
   dplyr::arrange(dplyr::desc(ppp)) %>%
   head(15) %>%
-  dplyr::left_join(gamezoneR::cbb_team_info %>%
+  dplyr::left_join(gamezoneR::mbb_team_info %>%
                      dplyr::select(game_zone, team_logo_espn),
                    by = c("poss_before" = "game_zone")) %>%
   dplyr::select(season, team_logo_espn, dplyr::everything()) %>%

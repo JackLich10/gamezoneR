@@ -320,14 +320,11 @@
 <p>Alternatively, you may want to load in all games at once from the remote repository. To do so, run the following lines of code:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/future/man/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_gamezone_pbp.html">load_gamezone_pbp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2016-17"</span>, <span class="st">"2017-18"</span>, <span class="st">"2018-19"</span>, <span class="st">"2019-20"</span>, <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 57.645 sec elapsed</code></pre>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p>Below, we aggregate each team’s offensive and defensive efficiency’s (again by points per possession) by game.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pbp_summarized</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">poss_before</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -359,13 +356,13 @@
                    .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span><span class="op">)</span></code></pre></div>
 <p>Let’s take a look at the most proficient offenses in college basketball since 2016-17:</p>
-<div id="upidjlermf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oeldgkfbpb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#upidjlermf .gt_table {
+#oeldgkfbpb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -390,7 +387,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#upidjlermf .gt_heading {
+#oeldgkfbpb .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -402,7 +399,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#upidjlermf .gt_title {
+#oeldgkfbpb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -412,7 +409,7 @@ html {
   border-bottom-width: 0;
 }
 
-#upidjlermf .gt_subtitle {
+#oeldgkfbpb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -422,13 +419,13 @@ html {
   border-top-width: 0;
 }
 
-#upidjlermf .gt_bottom_border {
+#oeldgkfbpb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#upidjlermf .gt_col_headings {
+#oeldgkfbpb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: transparent;
@@ -443,7 +440,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#upidjlermf .gt_col_heading {
+#oeldgkfbpb .gt_col_heading {
   color: #333333;
   background-color: white;
   font-size: 80%;
@@ -463,7 +460,7 @@ html {
   overflow-x: hidden;
 }
 
-#upidjlermf .gt_column_spanner_outer {
+#oeldgkfbpb .gt_column_spanner_outer {
   color: #333333;
   background-color: white;
   font-size: 80%;
@@ -475,15 +472,15 @@ html {
   padding-right: 4px;
 }
 
-#upidjlermf .gt_column_spanner_outer:first-child {
+#oeldgkfbpb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#upidjlermf .gt_column_spanner_outer:last-child {
+#oeldgkfbpb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#upidjlermf .gt_column_spanner {
+#oeldgkfbpb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: black;
@@ -495,7 +492,7 @@ html {
   width: 100%;
 }
 
-#upidjlermf .gt_group_heading {
+#oeldgkfbpb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -517,7 +514,7 @@ html {
   vertical-align: middle;
 }
 
-#upidjlermf .gt_empty_group_heading {
+#oeldgkfbpb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -532,15 +529,15 @@ html {
   vertical-align: middle;
 }
 
-#upidjlermf .gt_from_md > :first-child {
+#oeldgkfbpb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#upidjlermf .gt_from_md > :last-child {
+#oeldgkfbpb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#upidjlermf .gt_row {
+#oeldgkfbpb .gt_row {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 5px;
@@ -559,7 +556,7 @@ html {
   overflow-x: hidden;
 }
 
-#upidjlermf .gt_stub {
+#oeldgkfbpb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -571,7 +568,7 @@ html {
   padding-left: 12px;
 }
 
-#upidjlermf .gt_summary_row {
+#oeldgkfbpb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -581,7 +578,7 @@ html {
   padding-right: 5px;
 }
 
-#upidjlermf .gt_first_summary_row {
+#oeldgkfbpb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -591,7 +588,7 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#upidjlermf .gt_grand_summary_row {
+#oeldgkfbpb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -601,7 +598,7 @@ html {
   padding-right: 5px;
 }
 
-#upidjlermf .gt_first_grand_summary_row {
+#oeldgkfbpb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -611,11 +608,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#upidjlermf .gt_striped {
+#oeldgkfbpb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#upidjlermf .gt_table_body {
+#oeldgkfbpb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -624,7 +621,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#upidjlermf .gt_footnotes {
+#oeldgkfbpb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -638,13 +635,13 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#upidjlermf .gt_footnote {
+#oeldgkfbpb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#upidjlermf .gt_sourcenotes {
+#oeldgkfbpb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -658,41 +655,41 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#upidjlermf .gt_sourcenote {
+#oeldgkfbpb .gt_sourcenote {
   font-size: 12px;
   padding: 4px;
 }
 
-#upidjlermf .gt_left {
+#oeldgkfbpb .gt_left {
   text-align: left;
 }
 
-#upidjlermf .gt_center {
+#oeldgkfbpb .gt_center {
   text-align: center;
 }
 
-#upidjlermf .gt_right {
+#oeldgkfbpb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#upidjlermf .gt_font_normal {
+#oeldgkfbpb .gt_font_normal {
   font-weight: normal;
 }
 
-#upidjlermf .gt_font_bold {
+#oeldgkfbpb .gt_font_bold {
   font-weight: bold;
 }
 
-#upidjlermf .gt_font_italic {
+#oeldgkfbpb .gt_font_italic {
   font-style: italic;
 }
 
-#upidjlermf .gt_super {
+#oeldgkfbpb .gt_super {
   font-size: 65%;
 }
 
-#upidjlermf .gt_footnote_marks {
+#oeldgkfbpb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;

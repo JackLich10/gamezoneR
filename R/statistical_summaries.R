@@ -14,7 +14,7 @@ gamezone_mbb_team_stats <- function(team, season = "2020-21") {
   year <- stringr::str_sub(season, end = 4)
 
   # find team id
-  team_id <- gamezoneR::cbb_team_info %>%
+  team_id <- gamezoneR::mbb_team_info %>%
     tidyr::pivot_longer(cols = c(.data$team_name:.data$sref_name),
                         names_to = "organization",
                         values_to = "team_name") %>%
@@ -65,7 +65,7 @@ gamezone_mbb_team_stats <- function(team, season = "2020-21") {
 #' Get GameZone player statistical summary for a given player
 #' @author Jack Lichtenstein
 #' @param player_id playerID found in a play-by-play or box score dataframe returned by
-#' \code{gamezone_cbb_pbp} or \code{gamezone_cbb_boxscore}, respectively
+#' \code{gamezone_mbb_pbp} or \code{gamezone_mbb_boxscore}, respectively
 #' @export
 #'
 #' @examples

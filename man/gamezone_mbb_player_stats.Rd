@@ -8,7 +8,7 @@ gamezone_mbb_player_stats(player_id)
 }
 \arguments{
 \item{player_id}{playerID found in a play-by-play or box score dataframe returned by
-\code{gamezone_cbb_pbp} or \code{gamezone_cbb_boxscore}, respectively}
+\code{gamezone_mbb_pbp} or \code{gamezone_mbb_boxscore}, respectively}
 }
 \description{
 Get GameZone player statistical summary for a given player

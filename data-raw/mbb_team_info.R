@@ -43,8 +43,8 @@ cbb_team_info <- dictionary %>%
                 dplyr::everything()) %>%
   dplyr::arrange(game_zone_id)
 
-cbb_team_info <- cbbdbR::cbb_team_info
+mbb_team_info <- cbbdbR::cbb_team_info
 
 # use the data
-usethis::use_data(cbb_team_info, overwrite = T)
+usethis::use_data(mbb_team_info, overwrite = T)
 

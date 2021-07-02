@@ -10,9 +10,6 @@
     <loc>http://jacklich10.github.io/gamezoneR/reference/base_court_old.html</loc>
   </url>
   <url>
-    <loc>http://jacklich10.github.io/gamezoneR/reference/cbb_team_info.html</loc>
-  </url>
-  <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/gamezone_mbb_boxscore.html</loc>
   </url>
   <url>
@@ -32,6 +29,9 @@
   </url>
   <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/load_gamezone_pbp.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/mbb_team_info.html</loc>
   </url>
   <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/parse_substitutions.html</loc>

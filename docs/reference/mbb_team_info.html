@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • gamezoneR</title>
+<title>Information for Division I college basketball teams — mbb_team_info • gamezoneR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Information for Division I college basketball teams — mbb_team_info" />
+<meta property="og:description" content="A dataset containing the team ID's, various team names, colors, and logos
+of Division I college basketball teams" />
 <meta property="og:image" content="http://jacklich10.github.io/gamezoneR/logo.png" />
 
 
@@ -66,7 +68,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -123,102 +125,53 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Information for Division I college basketball teams</h1>
+    
+    <div class="hidden name"><code>mbb_team_info.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>A dataset containing the team ID's, various team names, colors, and logos
+of Division I college basketball teams</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='va'>mbb_team_info</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="base_court.html">base_court</a></code> </p>
-        </td>
-        <td><p>An object for shot chart plotting</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="base_court_old.html">base_court_old</a></code> </p>
-        </td>
-        <td><p>An object for shot chart plotting</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamezone_mbb_boxscore.html">gamezone_mbb_boxscore()</a></code> </p>
-        </td>
-        <td><p>Get GameZone boxscore</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamezone_mbb_master_schedule.html">gamezone_mbb_master_schedule()</a></code> </p>
-        </td>
-        <td><p>Get GameZone master schedule data by date</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamezone_mbb_pbp.html">gamezone_mbb_pbp()</a></code> </p>
-        </td>
-        <td><p>Get GameZone play-by-play and shot location data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamezone_mbb_player_stats.html">gamezone_mbb_player_stats()</a></code> </p>
-        </td>
-        <td><p>Get GameZone player statistical summary for a given player</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamezone_mbb_team_schedule.html">gamezone_mbb_team_schedule()</a></code> </p>
-        </td>
-        <td><p>Get GameZone team schedule data for a given season</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gamezone_mbb_team_stats.html">gamezone_mbb_team_stats()</a></code> </p>
-        </td>
-        <td><p>Get GameZone team statistical summary for a given season</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="load_gamezone_pbp.html">load_gamezone_pbp()</a></code> </p>
-        </td>
-        <td><p>Load cleaned gamezoneR play-by-play from the data repository</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mbb_team_info.html">mbb_team_info</a></code> </p>
-        </td>
-        <td><p>Information for Division I college basketball teams</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="parse_substitutions.html">parse_substitutions()</a></code> </p>
-        </td>
-        <td><p>Parse GameZone substitutions given a play-by-play dataframe</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 359 rows and 24 variables:</p><dl>
+  <dt>espn_id</dt><dd><p>ESPN unique team ID</p></dd>
+  <dt>game_zone_id</dt><dd><p>GameZone unique team ID</p></dd>
+  <dt>team_name</dt><dd><p>A common team name</p></dd>
+  <dt>game_zone</dt><dd><p>GameZone team name</p></dd>
+  <dt>espn</dt><dd><p>ESPN team name</p></dd>
+  <dt>ncaa</dt><dd><p>NCAA team name</p></dd>
+  <dt>espn_pbp</dt><dd><p>ESPN team name in Play-by-Play data</p></dd>
+  <dt>warren_nolan</dt><dd><p>Warren Nolan team name</p></dd>
+  <dt>trank</dt><dd><p>Barttorvik Trank team name</p></dd>
+  <dt>name_247</dt><dd><p>247 Sport team name</p></dd>
+  <dt>sref_link</dt><dd><p>sports-reference.com team link</p></dd>
+  <dt>sref_name</dt><dd><p>sports-reference.com team name</p></dd>
+  <dt>espn_pbp</dt><dd><p>NCAA conference</p></dd>
+  <dt>color_espn</dt><dd><p>ESPN primary color</p></dd>
+  <dt>alt_color_espn</dt><dd><p>ESPN alternate color</p></dd>
+  <dt>team_logo_espn</dt><dd><p>ESPN logo url</p></dd>
+  <dt>alt_team_logo_espn</dt><dd><p>ESPN alternate logo url</p></dd>
+  <dt>primary_color</dt><dd><p>Primary color</p></dd>
+  <dt>secondary_color</dt><dd><p>Secondary color</p></dd>
+  <dt>tertiary_color</dt><dd><p>Tertiary color</p></dd>
+  <dt>color_4</dt><dd><p>Color 4</p></dd>
+  <dt>color_5</dt><dd><p>Color 5</p></dd>
+  <dt>color_6</dt><dd><p>Color 6</p></dd>
+  <dt>logo_url</dt><dd><p>Wikimedia logo url</p></dd>
+
+</dl>
+
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
