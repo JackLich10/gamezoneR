@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • gamezoneR</title>
+<title>Information for Division I college basketball teams — mbb_team_info • gamezoneR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,9 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Information for Division I college basketball teams — mbb_team_info" />
+<meta property="og:description" content="A dataset containing the team ID's, various team names, colors, and logos
+of Division I college basketball teams" />
 <meta property="og:image" content="http://jacklich10.github.io/gamezoneR/logo.png" />
 
 
@@ -66,7 +68,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -125,56 +127,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      
+    <h1>Information for Division I college basketball teams</h1>
+    
+    <div class="hidden name"><code>mbb_team_info.Rd</code></div>
     </div>
 
-    <div id="gamezoner-011" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.1">
-<a href="#gamezoner-011" class="anchor"></a><strong>gamezoneR 0.1.1</strong>
-</h1>
-<div id="add-play-by-play-loader" class="section level3">
-<h3 class="hasAnchor">
-<a href="#add-play-by-play-loader" class="anchor"></a><strong>Add play-by-play loader</strong>
-</h3>
-<ul>
-<li>
-<a href="https://jacklich10.github.io/gamezoneR/reference/load_gamezone_pbp.html"><code>gamezoneR::load_gamezone_pbp()</code></a> function added, which retrieves pre-scraped data from remote data repository</li>
-<li>
-<a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_mbb_pbp.html"><code>gamezoneR::gamezone_mbb_pbp</code></a> now attempts to parse possessions, allowing for analysis on a per possession basis. See the intro <a href="https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html">article</a> for more.</li>
-</ul>
-</div>
-</div>
-    <div id="gamezoner-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#gamezoner-010" class="anchor"></a><strong>gamezoneR 0.1.0</strong>
-</h1>
-<div id="initial-release" class="section level3">
-<h3 class="hasAnchor">
-<a href="#initial-release" class="anchor"></a><strong>Initial release</strong>
-</h3>
-<ul>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/base_court.html"><code>gamezoneR::base_court</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/mbb_team_info.html"><code>gamezoneR::mbb_team_info</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_mbb_boxscore.html"><code>gamezoneR::gamezone_mbb_boxscore</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_mbb_pbp.html"><code>gamezoneR::gamezone_mbb_pbp</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_master_schedule.html"><code>gamezoneR::gamezone_master_schedule</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_player_stats.html"><code>gamezoneR::gamezone_player_stats</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_team_schedule.html"><code>gamezoneR::gamezone_team_schedule</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/gamezone_team_stats.html"><code>gamezoneR::gamezone_team_stats</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/load_gamezone_pbp.html"><code>gamezoneR::load_gamezone_pbp</code></a></li>
-<li><a href="https://jacklich10.github.io/gamezoneR/reference/parse_substitutions.html"><code>gamezoneR::parse_substitutions</code></a></li>
-</ul>
-</div>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>A dataset containing the team ID's, various team names, colors, and logos
+of Division I college basketball teams</p>
+    </div>
 
+    <pre class="usage"><span class='va'>mbb_team_info</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 359 rows and 24 variables:</p><dl>
+  <dt>espn_id</dt><dd><p>ESPN unique team ID</p></dd>
+  <dt>game_zone_id</dt><dd><p>GameZone unique team ID</p></dd>
+  <dt>team_name</dt><dd><p>A common team name</p></dd>
+  <dt>game_zone</dt><dd><p>GameZone team name</p></dd>
+  <dt>espn</dt><dd><p>ESPN team name</p></dd>
+  <dt>ncaa</dt><dd><p>NCAA team name</p></dd>
+  <dt>espn_pbp</dt><dd><p>ESPN team name in Play-by-Play data</p></dd>
+  <dt>warren_nolan</dt><dd><p>Warren Nolan team name</p></dd>
+  <dt>trank</dt><dd><p>Barttorvik Trank team name</p></dd>
+  <dt>name_247</dt><dd><p>247 Sport team name</p></dd>
+  <dt>sref_link</dt><dd><p>sports-reference.com team link</p></dd>
+  <dt>sref_name</dt><dd><p>sports-reference.com team name</p></dd>
+  <dt>espn_pbp</dt><dd><p>NCAA conference</p></dd>
+  <dt>color_espn</dt><dd><p>ESPN primary color</p></dd>
+  <dt>alt_color_espn</dt><dd><p>ESPN alternate color</p></dd>
+  <dt>team_logo_espn</dt><dd><p>ESPN logo url</p></dd>
+  <dt>alt_team_logo_espn</dt><dd><p>ESPN alternate logo url</p></dd>
+  <dt>primary_color</dt><dd><p>Primary color</p></dd>
+  <dt>secondary_color</dt><dd><p>Secondary color</p></dd>
+  <dt>tertiary_color</dt><dd><p>Tertiary color</p></dd>
+  <dt>color_4</dt><dd><p>Color 4</p></dd>
+  <dt>color_5</dt><dd><p>Color 5</p></dd>
+  <dt>color_6</dt><dd><p>Color 6</p></dd>
+  <dt>logo_url</dt><dd><p>Wikimedia logo url</p></dd>
+
+</dl>
+
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

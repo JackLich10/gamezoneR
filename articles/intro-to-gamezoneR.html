@@ -127,14 +127,14 @@
 <a href="#scraping-schedules" class="anchor"></a>Scraping schedules</h3>
 <p>There are two functions to scrape schedules:</p>
 <ul>
-<li><code><a href="../reference/get_master_schedule.html">gamezoneR::get_master_schedule()</a></code></li>
-<li><code><a href="../reference/get_team_schedule.html">gamezoneR::get_team_schedule()</a></code></li>
+<li><code><a href="../reference/gamezone_mbb_master_schedule.html">gamezoneR::gamezone_mbb_master_schedule()</a></code></li>
+<li><code><a href="../reference/gamezone_mbb_team_schedule.html">gamezoneR::gamezone_mbb_team_schedule()</a></code></li>
 </ul>
-<p>The <code><a href="../reference/get_master_schedule.html">gamezoneR::get_master_schedule()</a></code> function has a parameter for <code>ranked_games</code>, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all games from the inputted date, regardless of whether a team is ranked or not.</p>
+<p>The <code><a href="../reference/gamezone_mbb_master_schedule.html">gamezoneR::gamezone_mbb_master_schedule()</a></code> function has a parameter for <code>ranked_games</code>, which is a logical argument specifying whether or not to scrape only the games on that date where at least one team is ranked in the AP top 25 poll. Turning this off will scrape all games from the inputted date, regardless of whether a team is ranked or not.</p>
 <p>Please note that specifying <code>ranked_games = T</code> increases the speed of the function because it utilizes the underlying API, while <code>ranked_games = F</code> does not.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># first, the ranked games for a given date</span>
-<span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_master_schedule.html">get_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_mbb_master_schedule.html">gamezone_mbb_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <pre><code>## ℹ Scraping ranked games master schedule for: 2021-03-10</code></pre>
 <pre><code>## ℹ There were 1 game(s) on 2021-03-10</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -149,7 +149,7 @@
 ## #   away_logo_id &lt;chr&gt;, away_name &lt;chr&gt;, away_total &lt;dbl&gt;, away_record &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># then, all the games for a given date</span>
-<span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_master_schedule.html">get_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_mbb_master_schedule.html">gamezone_mbb_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <pre><code>## ℹ Scraping master GameZone schedule for: 2021-03-10</code></pre>
 <pre><code>## ℹ There were 33 game(s) on 2021-03-10</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -164,9 +164,9 @@
 ## 5 2020-21 2021-03-10 2316778 Miami… Clems…         67         64              NA
 ## 6 2020-21 2021-03-10 2316884 Marqu… Georg…         49         68              NA
 ## # … with 1 more variable: away_ap_ranking &lt;dbl&gt;</code></pre>
-<p>We are able to scrape games by date, but also by team using the <code><a href="../reference/get_team_schedule.html">gamezoneR::get_team_schedule()</a></code> function.</p>
+<p>We are able to scrape games by date, but also by team using the <code>gamezoneR::get_team_schedule()</code> function.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">duke_schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/get_team_schedule.html">get_team_schedule</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Duke"</span>, season <span class="op">=</span> <span class="st">"2018-19"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">duke_schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_mbb_team_schedule.html">gamezone_mbb_team_schedule</a></span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Duke"</span>, season <span class="op">=</span> <span class="st">"2018-19"</span><span class="op">)</span></code></pre></div>
 <pre><code>## ℹ Scraping 2018-19 season schedule for: Duke</code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">duke_schedule</span><span class="op">)</span></code></pre></div>
@@ -188,10 +188,10 @@
 <div id="scraping-the-play-by-play" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scraping-the-play-by-play" class="anchor"></a>Scraping the play-by-play</h3>
-<p>Now that we have a schedule to work with, we can use the <code>gamezoneR::game_zone_cbb_pbp()</code> function to scrape play-by-play data for individual gameIds. The argument <code>sub_parse</code> is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns <code>home_1</code> through <code>away_5</code>, specifying the names of the 10 players on the floor.</p>
+<p>Now that we have a schedule to work with, we can use the <code><a href="../reference/gamezone_mbb_pbp.html">gamezoneR::gamezone_mbb_pbp()</a></code> function to scrape play-by-play data for individual gameIds. The argument <code>sub_parse</code> is a logical parameter specifying whether or not to attempt to parse substitution and lineup data. If TRUE, the play-by-play will be appended to include columns <code>home_1</code> through <code>away_5</code>, specifying the names of the 10 players on the floor.</p>
 <p>Please note that GameZone does not track all substitutions. As a result, a new column, <code>sub_error</code> will reside in the appended play-by-play data. I have not come across many games with no such errors.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_cbb_pbp.html">gamezone_cbb_pbp</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">$</span><span class="va">game_id</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,
+<code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_mbb_pbp.html">gamezone_mbb_pbp</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">$</span><span class="va">game_id</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,
                                    sub_parse <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <pre><code>## • Scraping Play-by-Play for GameID: 2316777</code></pre>
 <pre><code>## • Attempting to parse lineup and substitution data...
@@ -231,7 +231,7 @@
 <p>Now, let’s scrape all of Duke’s games from the Zion Williamson 2018-19 season using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df()</a></code>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_pbp</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">duke_schedule</span><span class="op">$</span><span class="va">game_id</span>, 
-                          <span class="fu">gamezoneR</span><span class="fu">::</span><span class="va"><a href="../reference/gamezone_cbb_pbp.html">gamezone_cbb_pbp</a></span>, sub_parse <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+                          <span class="fu">gamezoneR</span><span class="fu">::</span><span class="va"><a href="../reference/gamezone_mbb_pbp.html">gamezone_mbb_pbp</a></span>, sub_parse <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <p>Let’s plot some shot charts. We will use the built in <code><a href="../reference/base_court.html">gamezoneR::base_court</a></code> ggplot court.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_shots</span> <span class="op">&lt;-</span> <span class="va">duke_pbp</span> <span class="op">%&gt;%</span> 
@@ -264,10 +264,10 @@
        caption <span class="op">=</span> <span class="st">"Chart: @jacklich10 | Data: @gamezoneR"</span><span class="op">)</span></code></pre></div>
 <p><img src="intro-to-gamezoneR_files/figure-html/plot_zion-1.png" width="700"></p>
 <p>You might notice that Zion seems to have very few shots at the rim compared to what you might expect. This is true! STATS LLC’s API codes all layups and dunks at either (25, 5.25) or (26, 6.25), so many shots are plotted on top of one another. I have no idea why this is the case, but you might want to experiment with randomizing the locations of these shots when plotting shot charts.</p>
-<p>Since <code>gamezoneR</code> version 0.1.1 now attempts to parse possession information from the play-by-play, we can also look at a team’s offensive and defensive efficiency (by points per possession). Below is Duke’s offensive and defensive efficiency by game from the 2018-19 college basektball season.</p>
+<p>Since <code>gamezoneR</code> version 0.1.1 now attempts to parse possession information from the play-by-play, we can also look at a team’s offensive and defensive efficiency (by points per possession). Below is Duke’s offensive and defensive efficiency by game from the 2018-19 college basketball season.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">duke_pbp</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">poss_before</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">poss_before</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>poss_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">poss_number</span><span class="op">)</span>,
                 shot_made_numeric <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
                   <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">~</span> <span class="cn">NA_real_</span>,
@@ -283,21 +283,21 @@
                   <span class="va">shot_made_numeric</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">1</span>,
                   <span class="va">shot_made_numeric</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">three_pt</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">3</span>,
                   <span class="va">shot_made_numeric</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">three_pt</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span>, <span class="va">poss_number</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>fgm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
-            fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span><span class="op">)</span>,
-            ftm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
-            fta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
-            points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
-            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>poss <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">fgm</span><span class="op">:</span><span class="va">points</span>, <span class="va">sum</span><span class="op">)</span>,
-            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span>,
-         type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">poss_before</span> <span class="op">==</span> <span class="st">"Duke"</span>, <span class="st">"Offense"</span>, <span class="st">"Defense"</span><span class="op">)</span>,
-         color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">poss_before</span> <span class="op">==</span> <span class="st">"Duke"</span>, <span class="st">"black"</span>, <span class="st">"#003366"</span><span class="op">)</span>,
-         fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">poss_before</span> <span class="op">==</span> <span class="st">"Duke"</span>, <span class="st">"#001A57"</span>, <span class="st">"white"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span>, <span class="va">poss_number</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>fgm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
+                   fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span><span class="op">)</span>,
+                   ftm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
+                   fta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
+                   points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
+                   .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>poss <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+                   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">fgm</span><span class="op">:</span><span class="va">points</span>, <span class="va">sum</span><span class="op">)</span>,
+                   .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span>,
+                type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">poss_before</span> <span class="op">==</span> <span class="st">"Duke"</span>, <span class="st">"Offense"</span>, <span class="st">"Defense"</span><span class="op">)</span>,
+                color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">poss_before</span> <span class="op">==</span> <span class="st">"Duke"</span>, <span class="st">"black"</span>, <span class="st">"#003366"</span><span class="op">)</span>,
+                fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">poss_before</span> <span class="op">==</span> <span class="st">"Duke"</span>, <span class="st">"#001A57"</span>, <span class="st">"white"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">ppp</span>, fill <span class="op">=</span> <span class="va">fill</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">poss</span><span class="op">)</span>,
@@ -319,13 +319,14 @@
 <p>Alternatively, you may want to load in all games at once from the remote repository. To do so, run the following lines of code:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/future/man/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
-<span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/progressr/man/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
-  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_gamezone_pbp.html">load_gamezone_pbp</a></span><span class="op">(</span><span class="fu">gamezoneR</span><span class="fu">:::</span><span class="fu">available_seasons</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
+  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_gamezone_pbp.html">load_gamezone_pbp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2016-17"</span>, <span class="st">"2017-18"</span>, <span class="st">"2018-19"</span>, <span class="st">"2019-20"</span>, <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span></code></pre></div>
 <p>Below, we aggregate each team’s offensive and defensive efficiency’s (again by points per possession) by game.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pbp_summarized</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">poss_before</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">poss_before</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>poss_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">poss_number</span><span class="op">)</span>,
                 shot_made_numeric <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
                   <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">~</span> <span class="cn">NA_real_</span>,
@@ -341,26 +342,26 @@
                   <span class="va">shot_made_numeric</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">1</span>,
                   <span class="va">shot_made_numeric</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">three_pt</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="fl">3</span>,
                   <span class="va">shot_made_numeric</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">three_pt</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span>, <span class="va">poss_number</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>fgm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
-            fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span><span class="op">)</span>,
-            ftm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
-            fta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
-            points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
-            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>poss <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">fgm</span><span class="op">:</span><span class="va">points</span>, <span class="va">sum</span><span class="op">)</span>,
-            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span><span class="op">)</span></code></pre></div>
-<p>Let’s take a look at the most proficient offenses in college basketball since 2014-15</p>
-<div id="dtjvegwnus" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span>, <span class="va">poss_number</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>fgm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
+                   fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">F</span><span class="op">)</span>,
+                   ftm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">shot_outcome</span> <span class="op">==</span> <span class="st">"made"</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
+                   fta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">shot_outcome</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">free_throw</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span>,
+                   points <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">points</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,
+                   .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">season</span>, <span class="va">date</span>, <span class="va">game_id</span>, <span class="va">poss_before</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>poss <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+                   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">fgm</span><span class="op">:</span><span class="va">points</span>, <span class="va">sum</span><span class="op">)</span>,
+                   .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span><span class="op">)</span></code></pre></div>
+<p>Let’s take a look at the most proficient offenses in college basketball since 2016-17:</p>
+<div id="zsdzpdesir" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dtjvegwnus .gt_table {
+#zsdzpdesir .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -385,7 +386,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_heading {
+#zsdzpdesir .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -397,7 +398,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_title {
+#zsdzpdesir .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -407,7 +408,7 @@ html {
   border-bottom-width: 0;
 }
 
-#dtjvegwnus .gt_subtitle {
+#zsdzpdesir .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -417,13 +418,13 @@ html {
   border-top-width: 0;
 }
 
-#dtjvegwnus .gt_bottom_border {
+#zsdzpdesir .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_col_headings {
+#zsdzpdesir .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: transparent;
@@ -438,7 +439,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_col_heading {
+#zsdzpdesir .gt_col_heading {
   color: #333333;
   background-color: white;
   font-size: 80%;
@@ -458,7 +459,7 @@ html {
   overflow-x: hidden;
 }
 
-#dtjvegwnus .gt_column_spanner_outer {
+#zsdzpdesir .gt_column_spanner_outer {
   color: #333333;
   background-color: white;
   font-size: 80%;
@@ -470,15 +471,15 @@ html {
   padding-right: 4px;
 }
 
-#dtjvegwnus .gt_column_spanner_outer:first-child {
+#zsdzpdesir .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dtjvegwnus .gt_column_spanner_outer:last-child {
+#zsdzpdesir .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dtjvegwnus .gt_column_spanner {
+#zsdzpdesir .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: black;
@@ -490,7 +491,7 @@ html {
   width: 100%;
 }
 
-#dtjvegwnus .gt_group_heading {
+#zsdzpdesir .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -512,7 +513,7 @@ html {
   vertical-align: middle;
 }
 
-#dtjvegwnus .gt_empty_group_heading {
+#zsdzpdesir .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -527,15 +528,15 @@ html {
   vertical-align: middle;
 }
 
-#dtjvegwnus .gt_from_md > :first-child {
+#zsdzpdesir .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dtjvegwnus .gt_from_md > :last-child {
+#zsdzpdesir .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dtjvegwnus .gt_row {
+#zsdzpdesir .gt_row {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 5px;
@@ -554,7 +555,7 @@ html {
   overflow-x: hidden;
 }
 
-#dtjvegwnus .gt_stub {
+#zsdzpdesir .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -566,7 +567,7 @@ html {
   padding-left: 12px;
 }
 
-#dtjvegwnus .gt_summary_row {
+#zsdzpdesir .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -576,7 +577,7 @@ html {
   padding-right: 5px;
 }
 
-#dtjvegwnus .gt_first_summary_row {
+#zsdzpdesir .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -586,7 +587,7 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_grand_summary_row {
+#zsdzpdesir .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -596,7 +597,7 @@ html {
   padding-right: 5px;
 }
 
-#dtjvegwnus .gt_first_grand_summary_row {
+#zsdzpdesir .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -606,11 +607,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_striped {
+#zsdzpdesir .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dtjvegwnus .gt_table_body {
+#zsdzpdesir .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -619,7 +620,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_footnotes {
+#zsdzpdesir .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -633,13 +634,13 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_footnote {
+#zsdzpdesir .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dtjvegwnus .gt_sourcenotes {
+#zsdzpdesir .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -653,41 +654,41 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dtjvegwnus .gt_sourcenote {
+#zsdzpdesir .gt_sourcenote {
   font-size: 12px;
   padding: 4px;
 }
 
-#dtjvegwnus .gt_left {
+#zsdzpdesir .gt_left {
   text-align: left;
 }
 
-#dtjvegwnus .gt_center {
+#zsdzpdesir .gt_center {
   text-align: center;
 }
 
-#dtjvegwnus .gt_right {
+#zsdzpdesir .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dtjvegwnus .gt_font_normal {
+#zsdzpdesir .gt_font_normal {
   font-weight: normal;
 }
 
-#dtjvegwnus .gt_font_bold {
+#zsdzpdesir .gt_font_bold {
   font-weight: bold;
 }
 
-#dtjvegwnus .gt_font_italic {
+#zsdzpdesir .gt_font_italic {
   font-style: italic;
 }
 
-#dtjvegwnus .gt_super {
+#zsdzpdesir .gt_super {
   font-size: 65%;
 }
 
-#dtjvegwnus .gt_footnote_marks {
+#zsdzpdesir .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -699,7 +700,7 @@ html {
 <th colspan="5" class="gt_heading gt_title gt_font_normal" style><strong>Best team offensive efficiencies</strong></th>
     </tr>
 <tr>
-<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style><em>2014-15 through 2020-21 college basketball seasons</em></th>
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style><em>2016-17 through 2020-21 college basketball seasons</em></th>
     </tr>
 </thead>
 <thead class="gt_col_headings"><tr>
@@ -711,109 +712,109 @@ html {
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td class="gt_row gt_left">2014-15</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/87.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Notre Dame</td>
-<td class="gt_row gt_right">38</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #35B0AB; color: #000000;">1.25</td>
-</tr>
-<tr>
 <td class="gt_row gt_left">2017-18</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/222.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Villanova</td>
 <td class="gt_row gt_right">40</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #B2E1B0; color: #000000;">1.22</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #35B0AB; color: #000000;">1.22</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2020-21</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Gonzaga</td>
 <td class="gt_row gt_right">32</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #B6E3B1; color: #000000;">1.22</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #56B9AB; color: #000000;">1.22</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2018-19</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Gonzaga</td>
 <td class="gt_row gt_right">37</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #BDE6B2; color: #000000;">1.22</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2014-15</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/84.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Indiana</td>
-<td class="gt_row gt_right">34</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #CDEDB7; color: #000000;">1.21</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #67C0AB; color: #000000;">1.22</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2016-17</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/197.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Oklahoma State</td>
 <td class="gt_row gt_right">33</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #D5F0BD; color: #000000;">1.21</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #9AD6AC; color: #000000;">1.21</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2016-17</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/26.png" style="height:30px;"></td>
 <td class="gt_row gt_left">UCLA</td>
 <td class="gt_row gt_right">36</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #D7F1BE; color: #000000;">1.21</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2014-15</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/275.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Wisconsin</td>
-<td class="gt_row gt_right">40</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #E7F7CA; color: #000000;">1.20</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #9ED8AD; color: #000000;">1.21</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2019-20</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Gonzaga</td>
 <td class="gt_row gt_right">33</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F2FBD3; color: #000000;">1.20</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2015-16</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/84.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Indiana</td>
-<td class="gt_row gt_right">35</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F4FCD8; color: #000000;">1.19</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #CCEDB6; color: #000000;">1.20</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2020-21</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/239.png" style="height:30px;"></td>
 <td class="gt_row gt_left">Baylor</td>
 <td class="gt_row gt_right">30</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F5FCDD; color: #000000;">1.19</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2014-15</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Gonzaga</td>
-<td class="gt_row gt_right">38</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F6FCDF; color: #000000;">1.19</td>
-</tr>
-<tr>
-<td class="gt_row gt_left">2014-15</td>
-<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/150.png" style="height:30px;"></td>
-<td class="gt_row gt_left">Duke</td>
-<td class="gt_row gt_right">39</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F6FCDF; color: #000000;">1.19</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #D8F2BF; color: #000000;">1.19</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">2017-18</td>
 <td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png" style="height:30px;"></td>
 <td class="gt_row gt_left">TCU</td>
 <td class="gt_row gt_right">32</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F8FDE6; color: #000000;">1.19</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #E4F6C7; color: #000000;">1.19</td>
 </tr>
 <tr>
-<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">2015-16</td>
-<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/127.png" style="height:30px;"></td>
-<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">Michigan State</td>
-<td class="gt_row gt_right" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">35</td>
-<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FFFFFF; color: #000000; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">1.18</td>
+<td class="gt_row gt_left">2016-17</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/222.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Villanova</td>
+<td class="gt_row gt_right">36</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #F9FDEA; color: #000000;">1.18</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2017-18</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Purdue</td>
+<td class="gt_row gt_right">37</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FBFEF0; color: #000000;">1.17</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2020-21</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Iowa</td>
+<td class="gt_row gt_right">31</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FDFEF6; color: #000000;">1.17</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2017-18</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/98.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Western Kentucky</td>
+<td class="gt_row gt_right">34</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FEFFF9; color: #000000;">1.17</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2017-18</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2608.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Saint Mary's</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FEFFFC; color: #000000;">1.17</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">2017-18</td>
+<td class="gt_row gt_left"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2250.png" style="height:30px;"></td>
+<td class="gt_row gt_left">Gonzaga</td>
+<td class="gt_row gt_right">37</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FEFFFC; color: #000000;">1.17</td>
+</tr>
+<tr>
+<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">2016-17</td>
+<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;"><img src="https://a.espncdn.com/i/teamlogos/ncaa/500/130.png" style="height:30px;"></td>
+<td class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">Michigan</td>
+<td class="gt_row gt_right" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">38</td>
+<td class="gt_row gt_right" style="border-left-width: 3px; border-left-style: solid; border-left-color: black; background-color: #FFFFFF; color: #000000; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: transparent;">1.17</td>
 </tr>
 </tbody>
 <tfoot class="gt_sourcenotes"><tr>
