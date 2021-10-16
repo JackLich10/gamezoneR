@@ -102,7 +102,7 @@
 <p>For a quick introduction to the package, visit the Intro to <code>gamezoneR</code> <a href="https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html">article</a>.</p>
 <p>If you want to load in all available play-by-play data dating back to the 2017-18 season, use the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/future/man/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="reference/load_gamezone_pbp.html">load_gamezone_pbp</a></span><span class="op">(</span><span class="fu">gamezoneR</span><span class="fu">:::</span><span class="fu">available_seasons</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
