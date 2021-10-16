@@ -36,12 +36,17 @@ load_gamezone_pbp <- function(seasons) {
 
 single_season <- function(season, p) {
 
-  season <- stringr::str_remove(season, "-")
+  season_lab <- stringr::str_remove(season, "-")
 
-  .url <- paste0("https://raw.githubusercontent.com/JackLich10/gamezoneR-data/main/data/play_by_play/rds/pbp_", season, ".rds")
+  .url <- paste0("https://raw.githubusercontent.com/JackLich10/gamezoneR-data/main/data/play_by_play/rds/pbp_", season_lab, ".rds")
   con <- url(.url)
-  pbp <- readRDS(con)
+  pbp <- try(readRDS(con), silent = TRUE)
   close(con)
+
+  if ("try-error" %in% class(pbp)) {
+    usethis::ui_oops("No pbp available for {season}. Check back later!")
+    return(NULL)
+  }
 
   p(sprintf("season=%s", season))
   return(pbp)

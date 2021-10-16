@@ -6,10 +6,9 @@ first_season <- "2008-09"
 
 # Find most recent college basketball season
 most_recent_season <- function() {
-  end <- ifelse(as.numeric(substr(Sys.Date(), 6, 7)) >= 10,
-         as.numeric(substr(Sys.Date(), 1, 4)) + 1,
-         as.numeric(substr(Sys.Date(), 1, 4))
-  )
+  end <- ifelse(as.numeric(substr(Sys.Date(), 6, 7)) >= 11, # if greater or equal to November
+                as.numeric(substr(Sys.Date(), 1, 4)) + 1,
+                as.numeric(substr(Sys.Date(), 1, 4)))
 
   season <- paste0(end - 1, "-", substr(end, 3, 4))
   return(season)
