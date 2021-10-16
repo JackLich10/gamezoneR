@@ -76,7 +76,7 @@ Now that we have a schedule to work with, we can use the `gamezoneR::gamezone_mb
 Please note that GameZone does not track all substitutions. As a result, a new column, `sub_error` will reside in the appended play-by-play data. I have not come across many games with no such errors.
 
 ```{r pbp}
-pbp <- gamezoneR::gamezone_mbb_pbp(schedule$game_id[2],
+pbp <- gamezoneR::gamezone_mbb_pbp(duke_schedule$game_id[1],
                                    sub_parse = T)
 
 pbp %>% 
