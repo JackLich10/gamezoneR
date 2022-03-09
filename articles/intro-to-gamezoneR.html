@@ -136,13 +136,13 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">schedule</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="co">##   season  start_time game_date  game_id tv    home     away       home_abbr</span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> 2020-21 9:30 PM ET 2021-03-10 2<span style="text-decoration: underline;">317</span>212 ESPN  Oklahoma Iowa State Okla     </span>
-<span class="co">## <span style="color: #949494;"># … with 13 more variables: home_ap_ranking &lt;int&gt;, home_id &lt;int&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   home_is_winner &lt;lgl&gt;, home_logo_id &lt;chr&gt;, home_name &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   home_total &lt;dbl&gt;, home_record &lt;chr&gt;, away_abbr &lt;chr&gt;, away_id &lt;int&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   away_logo_id &lt;chr&gt;, away_name &lt;chr&gt;, away_total &lt;dbl&gt;, away_record &lt;chr&gt;</span></span></code></pre>
+<span class="co">##   season  start_time game_date  game_id tv    home     away    home_abbr home_id</span>
+<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">## <span style="color: #BCBCBC;">1</span> 2020-21 9:30 PM ET 2021-03-10 2<span style="text-decoration: underline;">317</span>212 ESPN  Oklahoma Iowa S… Okla         <span style="text-decoration: underline;">1</span>558</span>
+<span class="co">## <span style="color: #949494;"># … with 12 more variables: home_is_winner &lt;lgl&gt;, home_logo_id &lt;chr&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   home_name &lt;chr&gt;, home_total &lt;dbl&gt;, home_ap_ranking &lt;int&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   home_record &lt;chr&gt;, away_abbr &lt;chr&gt;, away_id &lt;int&gt;, away_logo_id &lt;chr&gt;,</span></span>
+<span class="co">## <span style="color: #949494;">#   away_name &lt;chr&gt;, away_total &lt;dbl&gt;, away_record &lt;chr&gt;</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># then, all the games for a given date</span>
 <span class="va">schedule</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="../reference/gamezone_mbb_master_schedule.html">gamezone_mbb_master_schedule</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">"2021-03-10"</span>, ranked_games <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
@@ -346,13 +346,13 @@
                    .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ppp <span class="op">=</span> <span class="va">points</span><span class="op">/</span><span class="va">poss</span><span class="op">)</span></code></pre></div>
 <p>Let’s take a look at the most proficient offenses in college basketball since 2016-17:</p>
-<div id="wdnmsghfnk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xaezbihbqs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wdnmsghfnk .gt_table {
+#xaezbihbqs .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -377,7 +377,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_heading {
+#xaezbihbqs .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -389,7 +389,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_title {
+#xaezbihbqs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -401,7 +401,7 @@ html {
   border-bottom-width: 0;
 }
 
-#wdnmsghfnk .gt_subtitle {
+#xaezbihbqs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -413,13 +413,13 @@ html {
   border-top-width: 0;
 }
 
-#wdnmsghfnk .gt_bottom_border {
+#xaezbihbqs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_col_headings {
+#xaezbihbqs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: rgba(0, 0, 0, 0);
@@ -434,7 +434,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_col_heading {
+#xaezbihbqs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -454,7 +454,7 @@ html {
   overflow-x: hidden;
 }
 
-#wdnmsghfnk .gt_column_spanner_outer {
+#xaezbihbqs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -466,15 +466,15 @@ html {
   padding-right: 4px;
 }
 
-#wdnmsghfnk .gt_column_spanner_outer:first-child {
+#xaezbihbqs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wdnmsghfnk .gt_column_spanner_outer:last-child {
+#xaezbihbqs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wdnmsghfnk .gt_column_spanner {
+#xaezbihbqs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -486,7 +486,7 @@ html {
   width: 100%;
 }
 
-#wdnmsghfnk .gt_group_heading {
+#xaezbihbqs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -511,7 +511,7 @@ html {
   vertical-align: middle;
 }
 
-#wdnmsghfnk .gt_empty_group_heading {
+#xaezbihbqs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -526,15 +526,15 @@ html {
   vertical-align: middle;
 }
 
-#wdnmsghfnk .gt_from_md > :first-child {
+#xaezbihbqs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wdnmsghfnk .gt_from_md > :last-child {
+#xaezbihbqs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wdnmsghfnk .gt_row {
+#xaezbihbqs .gt_row {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 5px;
@@ -553,7 +553,7 @@ html {
   overflow-x: hidden;
 }
 
-#wdnmsghfnk .gt_stub {
+#xaezbihbqs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -566,7 +566,7 @@ html {
   padding-right: 5px;
 }
 
-#wdnmsghfnk .gt_stub_row_group {
+#xaezbihbqs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -580,11 +580,11 @@ html {
   vertical-align: top;
 }
 
-#wdnmsghfnk .gt_row_group_first td {
+#xaezbihbqs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wdnmsghfnk .gt_summary_row {
+#xaezbihbqs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -594,16 +594,16 @@ html {
   padding-right: 5px;
 }
 
-#wdnmsghfnk .gt_first_summary_row {
+#xaezbihbqs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_first_summary_row.thick {
+#xaezbihbqs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wdnmsghfnk .gt_last_summary_row {
+#xaezbihbqs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -613,7 +613,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_grand_summary_row {
+#xaezbihbqs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -623,7 +623,7 @@ html {
   padding-right: 5px;
 }
 
-#wdnmsghfnk .gt_first_grand_summary_row {
+#xaezbihbqs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -633,11 +633,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_striped {
+#xaezbihbqs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wdnmsghfnk .gt_table_body {
+#xaezbihbqs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -646,7 +646,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_footnotes {
+#xaezbihbqs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -660,7 +660,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_footnote {
+#xaezbihbqs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -669,7 +669,7 @@ html {
   padding-right: 5px;
 }
 
-#wdnmsghfnk .gt_sourcenotes {
+#xaezbihbqs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -683,7 +683,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#wdnmsghfnk .gt_sourcenote {
+#xaezbihbqs .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -691,60 +691,60 @@ html {
   padding-right: 5px;
 }
 
-#wdnmsghfnk .gt_left {
+#xaezbihbqs .gt_left {
   text-align: left;
 }
 
-#wdnmsghfnk .gt_center {
+#xaezbihbqs .gt_center {
   text-align: center;
 }
 
-#wdnmsghfnk .gt_right {
+#xaezbihbqs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wdnmsghfnk .gt_font_normal {
+#xaezbihbqs .gt_font_normal {
   font-weight: normal;
 }
 
-#wdnmsghfnk .gt_font_bold {
+#xaezbihbqs .gt_font_bold {
   font-weight: bold;
 }
 
-#wdnmsghfnk .gt_font_italic {
+#xaezbihbqs .gt_font_italic {
   font-style: italic;
 }
 
-#wdnmsghfnk .gt_super {
+#xaezbihbqs .gt_super {
   font-size: 65%;
 }
 
-#wdnmsghfnk .gt_footnote_marks {
+#xaezbihbqs .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#wdnmsghfnk .gt_asterisk {
+#xaezbihbqs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wdnmsghfnk .gt_slash_mark {
+#xaezbihbqs .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#wdnmsghfnk .gt_fraction_numerator {
+#xaezbihbqs .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#wdnmsghfnk .gt_fraction_denominator {
+#xaezbihbqs .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
