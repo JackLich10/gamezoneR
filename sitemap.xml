@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://jacklich10.github.io/gamezoneR/404.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/authors.html</loc>
+  </url>
+  <url>
     <loc>http://jacklich10.github.io/gamezoneR/index.html</loc>
+  </url>
+  <url>
+    <loc>http://jacklich10.github.io/gamezoneR/news/index.html</loc>
   </url>
   <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/base_court.html</loc>
@@ -28,6 +49,9 @@
     <loc>http://jacklich10.github.io/gamezoneR/reference/gamezone_mbb_team_stats.html</loc>
   </url>
   <url>
+    <loc>http://jacklich10.github.io/gamezoneR/reference/index.html</loc>
+  </url>
+  <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/load_gamezone_pbp.html</loc>
   </url>
   <url>
@@ -35,8 +59,5 @@
   </url>
   <url>
     <loc>http://jacklich10.github.io/gamezoneR/reference/parse_substitutions.html</loc>
-  </url>
-  <url>
-    <loc>http://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html</loc>
   </url>
 </urlset>

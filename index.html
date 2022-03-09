@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gamezoneR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -81,85 +77,98 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="gamezoner-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#gamezoner-" class="anchor"></a>gamezoneR <a href="http://jacklich10.github.io/gamezoneR"><img src="reference/figures/gamezoneR_40trans.png" align="right" height="139"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="gamezoner-">gamezoneR <a href="http://jacklich10.github.io/gamezoneR"><img src="reference/figures/gamezoneR_40trans.png" align="right" height="139"></a>
+<a class="anchor" aria-label="anchor" href="#gamezoner-"></a>
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p><code>gamezoneR</code> is an R package for working with NCAA Men’s Basketball play-by-play data from STATS LLC’s <a href="http://gamezone.stats.com/">GameZone</a>. The package allows users to scrape team and master schedules as well as play-by-play data with shot locations into a tidy format. The main benefit of <code>gamezoneR</code> is the volume of shot location data available. While ESPN also charts shots, as of March 10th 2021, ESPN has charted approximately 70,000 shots while STATS LLC has charted over 170,000 from the 2020-21 college basketball season alone!</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install <code>gamezoneR</code> from <a href="https://github.com/JackLich10/gamezoneR">GitHub</a> with:</p>
+<p><code>gamezoneR</code> is an R package for working with NCAA Men’s Basketball play-by-play data from STATS LLC’s <a href="http://gamezone.stats.com/" class="external-link">GameZone</a>. The package allows users to scrape team and master schedules as well as play-by-play data with shot locations into a tidy format. The main benefit of <code>gamezoneR</code> is the volume of shot location data available. While ESPN also charts shots, as of March 10th 2021, ESPN has charted approximately 70,000 shots while STATS LLC has charted over 170,000 from the 2020-21 college basketball season alone!</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install <code>gamezoneR</code> from <a href="https://github.com/JackLich10/gamezoneR" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install via devtools package using the following:</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"JackLich10/gamezoneR"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="getting-started" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started</h2>
-<p>For a quick introduction to the package, visit the Intro to <code>gamezoneR</code> <a href="https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html">article</a>.</p>
+<div class="section level2">
+<h2 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+</h2>
+<p>For a quick introduction to the package, visit the Intro to <code>gamezoneR</code> <a href="https://jacklich10.github.io/gamezoneR/articles/intro-to-gamezoneR.html" class="external-link">article</a>.</p>
 <p>If you want to load in all available play-by-play data dating back to the 2017-18 season, use the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span>
-<span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
+<span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html" class="external-link">with_progress</a></span><span class="op">(</span><span class="op">{</span>
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">gamezoneR</span><span class="fu">::</span><span class="fu"><a href="reference/load_gamezone_pbp.html">load_gamezone_pbp</a></span><span class="op">(</span><span class="fu">gamezoneR</span><span class="fu">:::</span><span class="fu">available_seasons</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span>
 <span class="co">## 48.078 sec elapsed</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">$</span><span class="va">game_id</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">$</span><span class="va">game_id</span><span class="op">)</span><span class="op">)</span>
 <span class="co">## 24,994 games</span>
-<span class="va">pbp</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">loc_x</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pbp</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">loc_x</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">## 2,843,392 shot locations</span></code></pre></div>
 </div>
-<div id="documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>For more information on the package and function reference, please see the <code>gamezoneR</code> <a href="https://jacklich10.github.io/gamezoneR/index.html">documentation</a>.</p>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>For more information on the package and function reference, please see the <code>gamezoneR</code> <a href="https://jacklich10.github.io/gamezoneR/index.html" class="external-link">documentation</a>.</p>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the <code>gamezoneR</code> project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the <code>gamezoneR</code> project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="https://www.github.com/JackLich10/gamezoneR/issues">https://​www.github.com/​JackLich10/​gamezoneR/​issues</a>
-</li>
+<li><a href="https://www.github.com/JackLich10/gamezoneR/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small>Apache License (&gt;= 2)</small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>
-<a href="https://twitter.com/jacklich10">Jack Lichtenstein</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html#citation">Citing gamezoneR</a></li>
 </ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>
+<a href="https://twitter.com/jacklich10" class="external-link">Jack Lichtenstein</a> <br><small class="roles"> Author, maintainer </small>  </li>
+</ul>
+</div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://twitter.com/jacklich10">Jack Lichtenstein</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://twitter.com/jacklich10" class="external-link">Jack Lichtenstein</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -167,6 +176,8 @@
 
   
 
+
+  
 
   </body>
 </html>
