@@ -71,10 +71,11 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
       dplyr::select(dplyr::any_of(c(
         "season", "start_time", "game_date" = "date",
         "game_id" = "event_id", "tv",
-        "home" = "home_location", "away" = "away_location")),
-        dplyr::starts_with("home_"), dplyr::starts_with("away_"),
-        -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
-           dplyr::ends_with("_losses"))) %>%
+        "home" = "home_location", "away" = "away_location",
+        "home_abbr", "home_id", "home_is_winner", "home_logo_id",
+        "home_name", "home_total", "home_ap_ranking", "home_record",
+        "away_abbr", "away_id", "away_is_winner", "away_logo_id",
+        "away_name", "away_total", "away_ap_ranking", "away_record"))) %>%
       dplyr::as_tibble()
 
   } else {
