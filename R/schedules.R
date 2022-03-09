@@ -46,25 +46,35 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
       return(NULL)
     }
 
-    schedule <- json %>%
+    schedule_raw <- json %>%
       janitor::clean_names() %>%
       tidyr::separate(.data$date_time, into = c("start_time", "date"),
                       sep = " \\| ", remove = T) %>%
       dplyr::mutate(season = season,
                     date = as.Date(.data$date, format = "%B %d, %Y"),
                     tv = dplyr::na_if(.data$tv, y = ""),
-                    home_total = dplyr::na_if(.data$home_total, y = ""),
-                    away_total = dplyr::na_if(.data$away_total, y = ""),
-                    dplyr::across(c(.data$event_id, .data$home_total, .data$away_total),
-                                  as.numeric),
-                    home_record = paste0(.data$home_record_wins, "-", .data$home_record_losses),
-                    away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses)) %>%
-      dplyr::select(.data$season, .data$start_time, game_date = .data$date,
-                    game_id = .data$event_id, .data$tv,
-                    home = .data$home_location, away = .data$away_location,
-                    dplyr::starts_with("home_"), dplyr::starts_with("away_"),
-                    -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
-                       dplyr::ends_with("_losses"))) %>%
+                    dplyr::across(dplyr::ends_with("_total"), ~ dplyr::na_if(., y = "")),
+                    dplyr::across(c(.data$event_id, dplyr::ends_with("_total")),
+                                  as.numeric))
+
+    if ("home_record_wins" %in% colnames(schedule_raw) & "home_record_losses" %in% colnames(schedule_raw)) {
+      schedule_raw <- schedule_raw %>%
+        dplyr::mutate(home_record = paste0(.data$home_record_wins, "-", .data$home_record_losses))
+    }
+
+    if ("away_record_wins" %in% colnames(schedule_raw) & "away_record_losses" %in% colnames(schedule_raw)) {
+      schedule_raw <- schedule_raw %>%
+        dplyr::mutate(away_record = paste0(.data$away_record_wins, "-", .data$away_record_losses))
+    }
+
+    schedule <- schedule_raw %>%
+      dplyr::select(dplyr::any_of(c(
+        "season", "start_time", "game_date" = "date",
+        "game_id" = "event_id", "tv",
+        "home" = "home_location", "away" = "away_location")),
+        dplyr::starts_with("home_"), dplyr::starts_with("away_"),
+        -c(dplyr::contains("timeouts"), dplyr::ends_with("_wins"),
+           dplyr::ends_with("_losses"))) %>%
       dplyr::as_tibble()
 
   } else {
@@ -154,7 +164,7 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
                        home_ap_ranking = .data$home_rank, away_ap_ranking = .data$away_rank) %>%
       dplyr::mutate(year = lubridate::year(.data$game_date),
                     month = lubridate::month(.data$game_date),
-                    season = ifelse(.data$month < 10, .data$year - 1),
+                    season = ifelse(.data$month < 10, .data$year - 1, .data$year),
                     season = paste0(.data$season, "-",
                                     as.numeric(stringr::str_sub(.data$season, 3)) + 1)) %>%
       dplyr::select(.data$season, dplyr::everything(),
