@@ -10,7 +10,7 @@
 #'  gamezone_mbb_master_schedule(date = "2021-03-01", ranked_games = T)
 #' }
 #'
-gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
+gamezone_mbb_master_schedule <- function(date, ranked_games = FALSE) {
   # error checking
   if (is.na(as.Date(date, format = "%Y-%m-%d"))) {
     usethis::ui_oops("Date is not in the format %Y-%m-%d...\nReturning NULL")
@@ -110,13 +110,13 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
     # extract game links
     links <- html %>%
       rvest::html_nodes("#shsCBKScoreboard .shsGZLink a") %>%
-      rvest::html_attr("href") %>%
-      unique()
+      rvest::html_attr("href")
 
     # extract table of game scores and final
     tables <- html %>%
       rvest::html_nodes(".shsLinescore") %>%
-      rvest::html_table(fill = T)
+      rvest::html_table(fill = TRUE) %>%
+      unique()
 
     # suprress warnings from janitor::row_to_names()
     options(warn = -1)
@@ -146,6 +146,7 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
                     game = cumsum(.data$home == "home")) %>%
       dplyr::left_join(box,
                        by = c("team", "game")) %>%
+      dplyr::distinct() %>%
       tidyr::pivot_wider(names_from = .data$home,
                          values_from = c(.data$team, .data$total)) %>%
       dplyr::rename(home = .data$team_home, away = .data$team_away,
@@ -154,7 +155,7 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
                                   ~ stringr::str_extract(., "\\d{1,2}"),
                                   .names = "{col}_rank"),
                     dplyr::across(c(.data$home, .data$away),
-                                  ~ stringr::str_trim(stringr::str_remove(., "\\d{1,2} "))),
+                                  ~ stringr::str_trim(stringr::str_remove(stringr::str_remove(., "\\d{1,2} "), "#"))),
                     dplyr::across(dplyr::ends_with("_total"), as.numeric),
                     dplyr::across(dplyr::ends_with("_rank"), as.numeric),
                     link = links,
@@ -169,12 +170,14 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
                     season = paste0(.data$season, "-",
                                     as.numeric(stringr::str_sub(.data$season, 3)) + 1)) %>%
       dplyr::select(.data$season, dplyr::everything(),
-                    -c(.data$year, .data$month))
+                    -c(.data$year, .data$month)) %>%
+      dplyr::distinct()
   }
   usethis::ui_info(paste0("There were ", nrow(schedule), " game(s) on ", date))
 
   return(schedule)
 }
+
 
 #' Get GameZone team schedule data for a given season
 #' @author Jack Lichtenstein
@@ -187,7 +190,7 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = F) {
 #'  gamezone_mbb_team_schedule(team = "Duke", season = "2018-19")
 #' }
 #'
-gamezone_mbb_team_schedule <- function(team, season = "2020-21") {
+gamezone_mbb_team_schedule <- function(team, season = tail(gamezoneR:::available_seasons(), 1)) {
   # find year
   year <- stringr::str_sub(season, end = 4)
 

@@ -4,7 +4,7 @@
 \alias{gamezone_mbb_master_schedule}
 \title{Get GameZone master schedule data by date}
 \usage{
-gamezone_mbb_master_schedule(date, ranked_games = F)
+gamezone_mbb_master_schedule(date, ranked_games = FALSE)
 }
 \arguments{
 \item{date}{date (of the form "2021-03-01")}

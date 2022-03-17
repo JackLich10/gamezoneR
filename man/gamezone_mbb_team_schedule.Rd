@@ -4,7 +4,10 @@
 \alias{gamezone_mbb_team_schedule}
 \title{Get GameZone team schedule data for a given season}
 \usage{
-gamezone_mbb_team_schedule(team, season = "2020-21")
+gamezone_mbb_team_schedule(
+  team,
+  season = tail(gamezoneR:::available_seasons(), 1)
+)
 }
 \arguments{
 \item{team}{team name}
