@@ -147,6 +147,9 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = FALSE) {
       dplyr::left_join(box,
                        by = c("team", "game")) %>%
       dplyr::distinct() %>%
+      dplyr::group_by(.data$game) %>%
+      tidyr::fill(final, .direction = "downup") %>%
+      dplyr::ungroup() %>%
       tidyr::pivot_wider(names_from = .data$home,
                          values_from = c(.data$team, .data$total)) %>%
       dplyr::rename(home = .data$team_home, away = .data$team_away,
