@@ -7,7 +7,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'  gamezone_mbb_master_schedule(date = "2021-03-01", ranked_games = T)
+#'  gamezone_mbb_master_schedule(date = "2021-03-01", ranked_games = TRUE)
 #' }
 #'
 gamezone_mbb_master_schedule <- function(date, ranked_games = FALSE) {
@@ -36,8 +36,8 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = FALSE) {
     append <- "?language=en-US&timezone=Eastern+Standard+Time"
     url <- paste0(base_url, date, append)
 
-    json <- try(jsonlite::fromJSON(url, flatten = T),
-                silent = T)
+    json <- try(jsonlite::fromJSON(url, flatten = TRUE),
+                silent = TRUE)
 
     if ("try-error" %in% class(json) || length(json) == 0) {
       usethis::ui_oops(paste0("No ranked games for: ", date))
@@ -49,7 +49,7 @@ gamezone_mbb_master_schedule <- function(date, ranked_games = FALSE) {
     schedule_raw <- json %>%
       janitor::clean_names() %>%
       tidyr::separate(.data$date_time, into = c("start_time", "date"),
-                      sep = " \\| ", remove = T) %>%
+                      sep = " \\| ", remove = TRUE) %>%
       dplyr::mutate(season = season,
                     date = as.Date(.data$date, format = "%B %d, %Y"),
                     tv = dplyr::na_if(.data$tv, y = ""),
@@ -202,7 +202,7 @@ gamezone_mbb_team_schedule <- function(team, season = tail(gamezoneR:::available
     tidyr::pivot_longer(cols = c(.data$team_name:.data$sref_name),
                         names_to = "organization",
                         values_to = "team_name") %>%
-    dplyr::distinct(.data$team_name, .keep_all = T) %>%
+    dplyr::distinct(.data$team_name, .keep_all = TRUE) %>%
     dplyr::select(.data$conference, .data$organization,
                   .data$game_zone_id, .data$team_name,
                   dplyr::everything()) %>%
@@ -223,8 +223,8 @@ gamezone_mbb_team_schedule <- function(team, season = tail(gamezoneR:::available
   append <- "?season="
   url <- paste0(base_url, team_id, append, year)
 
-  json <- try(jsonlite::fromJSON(url, flatten = T),
-              silent = T)
+  json <- try(jsonlite::fromJSON(url, flatten = TRUE),
+              silent = TRUE)
 
   if ("try-error" %in% class(json)) {
     usethis::ui_oops(paste0("No ", season, " season available for: ", team))
@@ -235,7 +235,7 @@ gamezone_mbb_team_schedule <- function(team, season = tail(gamezoneR:::available
   schedule <- json %>%
     janitor::clean_names() %>%
     tidyr::separate(.data$date_time, into = c("start_time", "date"),
-                    sep = " \\| ", remove = T) %>%
+                    sep = " \\| ", remove = TRUE) %>%
     dplyr::mutate(season = season,
                   date = as.Date(.data$date, format = "%B %d, %Y"),
                   tv = dplyr::na_if(.data$tv, y = ""),

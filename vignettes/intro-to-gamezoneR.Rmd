@@ -267,7 +267,7 @@ pbp_summarized %>%
       weight = gt::px(3))),
     locations = list(
       gt::cells_body(
-        columns = dplyr::vars(ppp)))) %>%
+        columns = c(ppp)))) %>%
   gt::tab_style(style = list(
     gt::cell_borders(
       sides = "bottom",
@@ -280,11 +280,11 @@ pbp_summarized %>%
                  colors = scales::col_numeric(
                    palette = c("#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"),
                    domain = NULL)) %>%
-  gt::text_transform(locations = gt::cells_body(columns = dplyr::vars(team_logo_espn)),
+  gt::text_transform(locations = gt::cells_body(columns = c(team_logo_espn)),
                      fn = function(x) gt::web_image(url = x, height = 30)) %>%
   gt::tab_source_note("Table: @jacklich10 | Data: @gamezoneR") %>%
   espnscrapeR::gt_theme_538() %>%
-  gt::cols_align(columns = dplyr::vars(poss_before),
+  gt::cols_align(columns = c(poss_before),
                  align = "left") %>%
   gt::tab_options(data_row.padding = gt::px(2))
 ```

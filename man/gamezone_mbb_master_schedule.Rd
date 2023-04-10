@@ -17,7 +17,7 @@ Get GameZone master schedule data by date
 }
 \examples{
 \dontrun{
- gamezone_mbb_master_schedule(date = "2021-03-01", ranked_games = T)
+ gamezone_mbb_master_schedule(date = "2021-03-01", ranked_games = TRUE)
 }
 
 }

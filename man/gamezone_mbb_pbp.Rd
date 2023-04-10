@@ -4,7 +4,7 @@
 \alias{gamezone_mbb_pbp}
 \title{Get GameZone play-by-play and shot location data}
 \usage{
-gamezone_mbb_pbp(game_id, sub_parse = F)
+gamezone_mbb_pbp(game_id, sub_parse = FALSE)
 }
 \arguments{
 \item{game_id}{unique GameZone GameID}

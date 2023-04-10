@@ -31,7 +31,7 @@ gamezone_mbb_boxscore <- function(game_id) {
 
   # extract json
   json <- try(jsonlite::fromJSON(url),
-              silent = T)
+              silent = TRUE)
 
   if ("try-error" %in% class(json) || length(json[["Boxscore"]]) == 0) {
     usethis::ui_oops("GameZone does not have box score data for this game...")
@@ -52,22 +52,22 @@ gamezone_mbb_boxscore <- function(game_id) {
   season <- paste0(season, "-", as.numeric(stringr::str_sub(season, start = 3)) + 1)
 
   # function to extract home and away team
-  extract_home_away <- function(data, home = T) {
+  extract_home_away <- function(data, home = TRUE) {
     data %>%
       purrr::map_df(., `[`) %>%
       dplyr::select(-c(dplyr::any_of("Record"))) %>%
       janitor::clean_names() %>%
-      dplyr::distinct(.data$id, .keep_all = T) %>%
+      dplyr::distinct(.data$id, .keep_all = TRUE) %>%
       dplyr::transmute(team_abbr = .data$abbr,
                        team_id = .data$id,
                        team = .data$location,
                        nickname = .data$name,
                        score = .data$total,
-                       location = ifelse(home == T, "home", "away"))
+                       location = ifelse(home == TRUE, "home", "away"))
   }
 
   # extract team information
-  teams <- dplyr::bind_rows(extract_home_away(json[["Home"]], home = T),
+  teams <- dplyr::bind_rows(extract_home_away(json[["Home"]], home = TRUE),
                             extract_home_away(json[["Away"]], home = F))
 
   unnested <- box %>%
@@ -81,7 +81,7 @@ gamezone_mbb_boxscore <- function(game_id) {
                        values_from = .data$Game) %>%
     janitor::clean_names() %>%
     tidyr::separate(.data$or_tr, into = c("o_reb", "tot_reb"),
-                    sep = "-", convert = T, remove = T) %>%
+                    sep = "-", convert = TRUE, remove = TRUE) %>%
     dplyr::left_join(teams,
                      by = "team_id") %>%
     dplyr::transmute(season = season, date = date,

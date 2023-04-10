@@ -18,7 +18,7 @@ gamezone_mbb_team_stats <- function(team, season = "2020-21") {
     tidyr::pivot_longer(cols = c(.data$team_name:.data$sref_name),
                         names_to = "organization",
                         values_to = "team_name") %>%
-    dplyr::distinct(.data$team_name, .keep_all = T) %>%
+    dplyr::distinct(.data$team_name, .keep_all = TRUE) %>%
     dplyr::select(.data$conference, .data$organization,
                   .data$game_zone_id, .data$team_name,
                   dplyr::everything()) %>%
@@ -39,8 +39,8 @@ gamezone_mbb_team_stats <- function(team, season = "2020-21") {
   append <- "/seasonstats/"
   url <- paste0(base_url, team_id, append, year)
 
-  json <- try(jsonlite::fromJSON(url, flatten = T),
-              silent = T)
+  json <- try(jsonlite::fromJSON(url, flatten = TRUE),
+              silent = TRUE)
 
   if ("try-error" %in% class(json)) {
     usethis::ui_oops(paste0("No ", season, " season statistics available for: ", team))
@@ -80,11 +80,11 @@ gamezone_mbb_player_stats <- function(player_id) {
   url1 <- paste0(base_url, player_id)
   url2 <- paste0(base_url, player_id, append)
 
-  json1 <- try(jsonlite::fromJSON(url1, flatten = T),
-              silent = T)
+  json1 <- try(jsonlite::fromJSON(url1, flatten = TRUE),
+              silent = TRUE)
 
-  json2 <- try(jsonlite::fromJSON(url2, flatten = T),
-              silent = T)
+  json2 <- try(jsonlite::fromJSON(url2, flatten = TRUE),
+              silent = TRUE)
 
   if ("try-error" %in% class(json1) || "try-error" %in% class(json2)) {
     usethis::ui_oops(paste0("No ", season, " season statistics available for: ", player_id))
