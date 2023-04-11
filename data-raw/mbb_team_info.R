@@ -45,19 +45,11 @@ name_dictionary <- ncaahoopR::dict %>%
   subset(!is.na(gamezone_id)) %>%
   dplyr::left_join(gamezoneR::mbb_team_info[,c("game_zone", "game_zone_id")], by = c("gamezone_id" = "game_zone_id")) %>%
   mutate(gamezone = coalesce(game_zone, team_name)) %>%
-  select(-team_name, -game_zone, -logo)
-
-name_dictionary
+  select(-team_name, -game_zone, -logo) %>%
+  distinct(espn_id, .keep_all = TRUE)
 
 espn_ids %>%
   filter(stringr::str_detect(espn_name, "Centenary"))
-
-# Game Zone IDs
-gamezone_ids <- gamezoneR::mbb_team_info %>%
-  dplyr::distinct(game_zone_id, game_zone) %>%
-  # dplyr::bind_rows(dplyr::tibble(game_zone_id = 1730,
-  #                                game_zone = "St. Thomas (MN)")) %>%
-  dplyr::arrange(gamezone_id)
 
 # Join together
 dictionary <- name_dictionary %>%
